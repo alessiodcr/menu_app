@@ -1,0 +1,60 @@
+<div class="all">
+    <h3>coperto: €{{coperto}}</h3>
+    <h2 style="text-align: center;">{{route()}}</h2>
+    <div class="products">
+      @if (fProducts.length == 0) {
+        <h1>Non ci sono prodotti disponibili</h1>
+      }
+    @for (product of fProducts; track $index) {
+        <div class="product">
+          <div class="img">
+            <img  class="images" src="{{product.img}}"/>
+          </div>
+          <div class="des">
+            <h3 class="titolo">{{product.nome}}</h3>
+            @for (allergene of product.allergeni; track $index) {
+              <img src="{{allergeneImg(allergene)}}" alt="{{allergene}}" class="allergene">
+            }
+            @if (product.allergeni.length > 0) {
+              <h3 class="ingredienti">{{product.ingredienti}}</h3>
+            }@else{
+              <h3 class="ingredienti" style="margin-top: 2rem;">{{product.ingredienti}}</h3>
+            }
+          </div>
+          <div class="price">
+            <h3>{{product.prezzo}}</h3>
+          </div>
+          <div class="selezione inl-flx">
+            <!--<button class="btn" (click)="minusOne($index)">-</button>
+            <h3>{{product.quantita}}</h3>
+            <button class="btn" (click)="addOne($index)">+</button>-->
+            <button class="btn round" (click)="display.setTrue(product)"> i</button>
+           </div>
+        </div>
+        }
+
+
+        </div>
+        
+        <div class="app-info" [style]="display.value" >
+          <div class="img-div">
+              <img class="img-info" src="{{display.product?.img}}" alt="">
+          </div>
+          <div class="title">
+              <h1>{{display.product?.nome}}</h1>
+              <h2>{{display.product?.ingredienti}}</h2>
+              @for (allergene of display.product?.allergeni; track $index) {
+                <img src="{{allergeneImg(allergene)}}" alt="{{allergene}}" class="info-allergene">
+              }
+          </div>
+          
+          <div class="info-selezione ">
+              <!--<button class="btn" (click)="minusOne(display.index)">-</button>
+              <button class="btn" (click)="addOne(display.index)">+</button>-->
+              <h1>{{display.product?.prezzo}}</h1>
+              <button class="x btn round" (click)="display.setFalse()">X</button>
+          </div>
+          
+          
+    </div>
+</div>

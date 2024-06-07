@@ -1,0 +1,15 @@
+<div class="all">
+    <button class="btn" (click)="display.toggle()">
+        <img class="img" src="assets/filter.png" alt="filtri">
+        <span>Filtri</span>
+    </button>
+    <div class="checkbox" [style]="display.value">
+        @for (item of allergeni; track $index) {
+            <div class="allergeni">
+                <input type="checkbox" name="allergeni" id="{{item}}" class="allergene" value="{{item}}" (change)="handleChange($event)">
+                <label for="{{item}}">{{item}}</label>
+            </div>
+        }
+        <!--<button class="btn" (click)="RemoveFilters()">rimuovi filtri</button>-->
+    </div>
+</div>

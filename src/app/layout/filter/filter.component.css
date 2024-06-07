@@ -1,0 +1,26 @@
+.img{
+    width: 100%;
+}
+.btn{
+    width:max-content;
+    display: inline-flex;
+
+}
+.checkbox{
+    position: fixed;
+    z-index: 20;
+    background-color: white;
+    left: 12%;
+    bottom: 20%;
+    border: solid 5px #508078;
+    border-radius: 5px;
+}
+.allergene{
+    margin: 2px;
+}
+@media only screen and (max-width: 430px){
+    .checkbox{
+        bottom: 50%;
+        left: 20%;
+    }
+}

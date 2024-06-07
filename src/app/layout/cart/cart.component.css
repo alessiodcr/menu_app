@@ -1,0 +1,90 @@
+.cart{
+    position: absolute; 
+     left: 0;
+     right: 0; 
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10000000;
+    border-radius: 10px;
+    border: 2% solid #508078;
+    height: 100%;
+}
+
+.products{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 75%;
+    overflow: hidden;
+    height: 100%;
+    background-color: white;
+}
+.product{
+    display: inline-flex;
+    border-radius: 10px;
+    border: 1px solid #508078;
+    width: 75%;
+    height: 7em;
+    margin: 0px 10% 5px 10%;
+    background-color: white;
+}
+.img{
+    float: left;
+    height: 100%;
+    width: 10em;
+    border-radius: 10px;
+}
+img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+.selezione{
+    right: 12%;
+    width: 10%;
+    display: inline-flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+.des{
+    margin: 0 2%;
+    width: 75%;
+}
+.inl-flx{
+    display: inline-flex;
+}
+.flt-l{
+    float:left
+}
+
+.price{
+    margin-right: 25%;
+}
+
+@media only screen and (max-width: 430px){
+    .titolo, .ingredienti{
+        margin: 0;
+    }
+    .titolo{
+        font-size: medium;
+    }
+    .ingredienti{
+        position: absolute;
+        font-size:x-small;
+        width: 50%;
+    }
+    .price{
+        font-size: medium;
+    }
+    .price h3{
+        margin: 0;
+    }
+    .quantita{
+        margin-bottom: 5.5em;
+    }
+    .selezione{
+        right: 18%;
+    }
+}

@@ -1,0 +1,23 @@
+<ul class="nav">
+    @for (page of pages; track $index) {
+        <li class="{{pages[0]}} span" [routerLink]="[pageRoute($index)]">
+            {{page}}
+        </li>
+    }
+</ul>
+<div class="footer">
+    <div class="pages">
+        @if (prevPage()) {
+            <h2 routerLink="menu/{{pages[prevPage() - 1]}}">{{prevPage()}}</h2>
+        }@else {
+            <h2 style="opacity: 0; cursor: default;"></h2>
+        }
+        <h2 id="current">{{currentPage()}}</h2>
+        @if (nextPage()) {
+            <h2 routerLink="{{pages[nextPage() -1 ]}}">{{nextPage()}}</h2>
+        }@else {
+            <h2 style="opacity: 0; cursor: default;"></h2>
+        }
+    </div>
+</div>
+

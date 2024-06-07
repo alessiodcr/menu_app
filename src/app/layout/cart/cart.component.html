@@ -1,0 +1,20 @@
+<button id="btn" (click)="display.toggle()" >Carrello</button>
+<div class="cart" [style]="display.value">
+    @for (product of products; track $index) {
+        <div class="product">
+            <div class="img">
+              <img  class="images" src="{{product.img}}"/>
+            </div>
+            <div class="des">
+              <h3 class="titolo">{{product.nome}}</h3>
+              <h3 class="ingredienti">{{product.ingredienti}}</h3>
+            </div>
+            <div class="price">
+              <h3>{{product.prezzo}}</h3>
+            </div>
+            <div class="selezione">
+              <h3 class="quantita">X{{product.quantita}}</h3>
+             </div>
+          </div>
+    }
+</div>

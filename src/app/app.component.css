@@ -1,0 +1,31 @@
+.wrapper{
+    position: relative;
+    display: grid;
+    height: 500px;
+}
+router-outlet{
+    position: fixed;
+}
+.buttons{
+    display: inline-flex;
+    width: 100%;
+}
+app-filter, app-cart {
+    margin: 0 7%;
+}
+app-cart{
+    float: right;
+    margin-left: 50%;
+}
+app-arrow{
+    position: fixed;
+}
+@media only screen and (max-width:430px){
+    app-grid{
+        width: 358px;
+    }
+    app-arrow{
+        z-index: 1000;
+    }
+}
+

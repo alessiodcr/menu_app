@@ -1,0 +1,9 @@
+img{
+    position: relative;
+    left: 15%;
+}
+@media only screen and (max-width: 430px){
+    img{
+        width: 90%;
+    }
+}
