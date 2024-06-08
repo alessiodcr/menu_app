@@ -1,0 +1,36 @@
+<div class="products">
+    @if (products.length == 0) {
+      <h1>Non ci sono prodotti disponibili</h1>
+    }
+  @for (product of products; track $index) {
+      <div class="product">
+        <div class="img">
+          <img  class="images" src="{{product.img}}"/>
+        </div>
+        <div class="des">
+          <h3 class="titolo">{{product.nome}}</h3>
+          @for (allergene of product.allergeni; track $index) {
+            <img src="{{allergeneImg(allergene)}}" alt="{{allergene}}" class="allergene">
+          }
+          @if (product.allergeni.length > 0) {
+            <h3 class="ingredienti">{{product.ingredienti}}</h3>
+          }@else{
+            <h3 class="ingredienti" style="margin-top: 2rem;">{{product.ingredienti}}</h3>
+          }
+        </div>
+        <div class="price">
+          <h3>{{product.prezzo}}</h3>
+        </div>
+        <div class="selezione inl-flx">
+          <!--<button class="btn" (click)="minusOne($index)">-</button>
+          <h3>{{product.quantita}}</h3>
+          <button class="btn" (click)="addOne($index)">+</button>-->
+          <!--<button class="btn round" (click)="products.setTrue(product)"> i</button>-->
+         </div>
+      </div>
+      }
+      <div class="addProduct">
+        <button class="btn round">+</button>
+      </div>
+
+      </div>

@@ -1,0 +1,40 @@
+.img{
+    float: left;
+    height: 100%;
+    width: 10em;
+    border-radius: 10px;
+}
+img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+.inl-flx{
+    display: inline-flex;
+}
+.flt-l{
+    float:left
+}
+
+.price{
+    margin-right: 25%;
+}
+.ingredienti{
+    font-size: medium;
+    position: absolute;
+    margin: 0;
+    width: 75%;
+    flex-shrink: 2;
+}
+.titolo{
+    margin: 0;
+}
+.allergene{
+    width: 2rem;
+    height: 2rem;
+} 
+
+.addProduct{
+    display: flex;
+    justify-content: center;
+}

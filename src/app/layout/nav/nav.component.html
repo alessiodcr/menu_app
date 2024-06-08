@@ -1,6 +1,6 @@
 <ul class="nav">
     @for (page of pages; track $index) {
-        <li class="{{pages[0]}} span" [routerLink]="[pageRoute($index)]">
+        <li class="{{page}} span" [routerLink]="[pageRoute($index, pages)]">
             {{page}}
         </li>
     }

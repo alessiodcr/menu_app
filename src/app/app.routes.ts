@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { GridComponent } from './layout/grid/grid.component';
 import { AllergeniComponent } from './layout/allergeni/allergeni.component';
 import { LayoutComponent } from './layout/layout.component';
+import { MainComponent } from './config/main/main.component';
+import { ConfigGridComponent } from './config/config-grid/config-grid.component';
 
 export const routes: Routes = [
     {
@@ -24,4 +26,18 @@ export const routes: Routes = [
             }
         ]
     },
+    {
+        path:"config",
+        component:MainComponent,
+        children:[
+            {
+                path:"allergeni",
+                component: AllergeniComponent
+            },
+            {
+                path:":id",
+                component: ConfigGridComponent
+            }
+        ]
+    }
 ];

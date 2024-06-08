@@ -4,7 +4,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { Product, display } from '../../../types';
 import { DataService } from '../../services/data.service';
 import { CartService } from '../../services/cart.service';
-import { filter } from 'rxjs';
+import { allergeneImg } from '../../../assets/utils';
 import { CopertoService } from '../../services/coperto.service';
 
 
@@ -126,7 +126,7 @@ export class GridComponent {
   }
 
 
-  
+  allergeneImg = allergeneImg
   //cart: Product[] = []; // array dei prodotti nel carrello
 
 
@@ -285,9 +285,6 @@ export class GridComponent {
    }
    */
 
-   allergeneImg(allergene:string){
-    return `assets/${allergene}.png`;
-   }
   route(){
     return this.router.url.slice(6).toUpperCase()
   }

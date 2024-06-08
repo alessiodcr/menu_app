@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { PagesService } from '../../services/pages.service';
-
+import { pageRoute } from '../../../assets/utils';
 @Component({
   selector: 'app-nav',
   standalone: true,
@@ -20,9 +20,7 @@ export class NavComponent {
       this.pages = data.pages
     })
   }
-  pageRoute(index: number){
-    return   this.pages[index]
-  }
+  pageRoute = pageRoute
   currentPage(){
     const url = this.router.url.slice(6)
     return this.pages.indexOf(url) + 1
