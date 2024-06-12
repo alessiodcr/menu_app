@@ -38,3 +38,33 @@ img{
     display: flex;
     justify-content: center;
 }
+.checkbox{
+    display: inline-flex;
+}
+.allergeniInput{
+    position: absolute;
+    width: 70%;
+    display: inline;
+}
+#newProduct{
+    height: 9em;
+}
+.delete{
+    float: right;
+}
+
+#editDiv{
+    top: 0;
+    z-index: 50;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+#editProduct{
+    height: 10em;
+    top: 40%;
+    position: fixed;
+    z-index: 100;
+    background-color: white;
+}

@@ -8,7 +8,7 @@ import { ConfigGridComponent } from './config/config-grid/config-grid.component'
 export const routes: Routes = [
     {
         path:"",
-        pathMatch:"full",
+        pathMatch:'full',
         redirectTo:"/menu/allergeni"
     },
     {

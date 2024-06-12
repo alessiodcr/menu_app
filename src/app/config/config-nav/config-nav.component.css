@@ -18,3 +18,7 @@ a{
       cursor: pointer;
       justify-self: center;
   }
+#delete{
+    width: 2em;
+    height: 2em;
+}

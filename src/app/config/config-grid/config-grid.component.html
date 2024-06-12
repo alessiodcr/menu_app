@@ -1,8 +1,6 @@
 <div class="products">
-    @if (products.length == 0) {
-      <h1>Non ci sono prodotti disponibili</h1>
-    }
   @for (product of products; track $index) {
+    
       <div class="product">
         <div class="img">
           <img  class="images" src="{{product.img}}"/>
@@ -22,15 +20,84 @@
           <h3>{{product.prezzo}}</h3>
         </div>
         <div class="selezione inl-flx">
-          <!--<button class="btn" (click)="minusOne($index)">-</button>
-          <h3>{{product.quantita}}</h3>
-          <button class="btn" (click)="addOne($index)">+</button>-->
-          <!--<button class="btn round" (click)="products.setTrue(product)"> i</button>-->
+          <button class="btn round">
+            <img src="assets/edit.png" alt="modifica" (click)="displayEdit.setTrue(product)">
+          </button>
+          <button class="btn round delete" (click)="deleteProduct(product)">
+            <img src="assets/delete.png" alt="cancella" id="delete">
+          </button>
+          
          </div>
       </div>
       }
-      <div class="addProduct">
-        <button class="btn round">+</button>
+      <div id="empty">
+        <form onsubmit="return false">
+        <div class="product" id="newProduct" [style]="display.formValue">
+          
+          <div class="img">
+            <input type="file" value="seleziona un immagine">
+          </div>
+          <div class="des">       
+              <input type="text" name="nome" id="nome" placeholder="nome" required>
+              <br>
+              <br>
+              <input type="text" name="ingredienti" id="ingredienti" placeholder="ingredienti" class="ingredienti" required>
+              <br>
+              <br>
+              <div class="allergeniInput">
+              @for (allergene of allergeni; track $index) {
+                <div class="checkbox">
+                  <input type="checkbox" name="{{allergene}}" id="{{allergene}}" value="{{allergene}}">
+                  <label for="{{allergene}}">{{allergene}}</label>
+                </div>
+              }
+            </div>
+          </div>
+          <div class="price" style="display: inline;">
+            <input type="number"  name="prezzo" id="prezzo" placeholder="prezzo" required>
+          </div>
+          <button class="btn" (click)="handleSubmit()">crea</button>
+        
+        </div>
+      </form>
       </div>
+      <div class="addProduct">
+        <button class="btn round" (click)="display.toggle()" [style]="display.value">+</button>
 
       </div>
+</div>
+<div id="editDiv" [style]="displayEdit.value">
+  <form onsubmit="return false">
+    <div class="product" id="editProduct" >
+      
+      <div class="img">
+        <input type="file">
+      </div>
+      <div class="des">    
+        <input type="text" class="titolo" name="editNome" id="editNome" placeholder="nome" value="{{displayEdit.product.nome}}"> 
+        <br><br>  
+        <input type="text" class="ingredienti" name="editIngredienti" id="editIngredienti" placeholder="ingredienti" value="{{displayEdit.product.ingredienti}}"> 
+        <br><br> 
+          <div class="allergeniInput">
+          @for (allergene of allergeni; track $index) {
+            @if(displayEdit.product.allergeni.includes(allergene)){
+              <div class="checkbox">
+                <input type="checkbox" name="edit{allergene}}" id="edit{{allergene}}" value="{{allergene}}" checked>
+                <label for="{{allergene}}">{{allergene}}</label>
+              </div>
+            }@else {
+              <div class="checkbox">
+                <input type="checkbox" name="edit{{allergene}}" id="edit{{allergene}}" value="{{allergene}}">
+                <label for="edit{{allergene}}">{{allergene}}</label>
+              </div>
+            }
+          }
+        </div>
+      </div>
+      <div class="price" style="display: inline;">
+        <input type="text" class="prezzo" name="editPrezzo" id="editPrezzo" placeholder="prezzo" value="{{(displayEdit.product.prezzo) }}">
+      </div>
+      <input type="submit" value="modifica" class="btn" (click)="handlePut()">
+    </div>
+  </form>
+</div>
