@@ -1,0 +1,6 @@
+<h1>Login</h1>
+<form [formGroup]="loginForm" (submit)="handleSubmit()" id="loginForm">
+    <input type="email" formControlName="email" class="inputLogin" placeholder="email">
+    <input type="password" formControlName="password" class="inputLogin" placeholder="password">
+    <button type="submit">invia</button>
+</form>

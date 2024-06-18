@@ -1,0 +1,32 @@
+<div id="options">
+    <h1>Opzioni</h1>
+    <form [formGroup]="optionsForm" (submit)="handleSubscribe()">
+        <div class="input" id="color1">
+            <label for="first">colore primario</label>
+            <input type="color" id="first" formControlName="primario">
+        </div>
+        <div id="color2" class="input">
+            <label for="second">colore secondario</label>
+            <input type="color" id="second" formControlName="secondario">
+        </div>
+        <div id="color3" class="input">
+            <label for="third">colore terziario</label>
+            <input type="color" id="third" formControlName="terziario">
+        </div>   
+        <div id="immagine" class="input">
+            <label for="immagine">mostra immagine dei prodotti</label>
+            <input type="checkbox" id="immagine" formControlName="immagine">     
+        </div>
+        <div id="font1" class="input">
+            <label for="fontG">grandezza caratteri grandi: {{optionsForm.value.grandi}}</label>
+            <input type="range" id="fontG" step="1" min="10" max="24" formControlName="grandi">
+            <span [style]="fontGrandi()">esempio</span>
+        </div>
+        <div id="font2" class="input">
+            <label for="font2P">grandezza caratteri piccoli: {{optionsForm.value.piccoli}}</label>  
+            <input type="range" id="font2P" step="1" min="8" max="20" formControlName="piccoli">
+            <span [style]="fontPiccoli()"> esempio</span>
+        </div>
+        <button type="submit" class="btn">conferma</button>
+    </form>
+</div>

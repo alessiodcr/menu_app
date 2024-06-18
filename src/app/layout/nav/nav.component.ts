@@ -35,7 +35,7 @@ export class NavComponent {
   }
   prevPage(){
     const url = this.router.url.slice(6)
-    if(this.pages.indexOf(url) === 0){
+    if(this.pages.indexOf(url) == 0){
       return NaN
     }else{
       return this.pages.indexOf(url)

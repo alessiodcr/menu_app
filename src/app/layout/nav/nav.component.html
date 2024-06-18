@@ -5,13 +5,13 @@
         </li>
     }
     <li class="span">
-        <a href="http://localhost:4200/config/allergeni">config</a>
+        <a href="http://localhost:4200/login">config</a>
     </li>
 </ul>
 <div class="footer">
     <div class="pages">
         @if (prevPage()) {
-            <h2 routerLink="menu/{{pages[prevPage() - 1]}}">{{prevPage()}}</h2>
+            <h2 routerLink="{{pages[prevPage() - 1]}}">{{prevPage()}}</h2>
         }@else {
             <h2 style="opacity: 0; cursor: default;"></h2>
         }

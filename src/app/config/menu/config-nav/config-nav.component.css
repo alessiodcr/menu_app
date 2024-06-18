@@ -22,3 +22,21 @@ a{
     width: 2em;
     height: 2em;
 }
+
+#sideNavMenu{
+    height: 3em;
+}
+#sideNavBox{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background-color: white;
+    z-index: 1000;
+}
+#sideNav{
+    list-style-type: none;
+}
+#x{
+    height: 2em;
+}

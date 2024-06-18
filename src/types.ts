@@ -52,3 +52,11 @@ export interface PaginationParams {
     [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>; 
     id: number;
 }
+export interface options{
+    primario: number,
+    secondario: number,
+    terziario: number,
+    immagine: boolean,
+    piccoli: string | number,
+    grandi: string | number
+}

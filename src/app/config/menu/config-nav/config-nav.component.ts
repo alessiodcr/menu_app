@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { PagesService } from '../../services/pages.service';
-import { RouterLink } from '@angular/router';
-import { pageRoute } from '../../../assets/utils';
+import { PagesService } from '../../../services/pages.service';
+import { Router, RouterLink } from '@angular/router';
+import { pageRoute } from '../../../../assets/utils';
+import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-config-nav',
   standalone: true,
@@ -11,7 +12,9 @@ import { pageRoute } from '../../../assets/utils';
 })
 export class ConfigNavComponent {
   constructor(
-    private pageService: PagesService
+    private pageService: PagesService,
+    private authService: AuthService,
+    private router: Router
   ){
 
   }
@@ -51,5 +54,21 @@ export class ConfigNavComponent {
       console.log(data)
       console.log('cancellato')
     })
+  }
+
+  menuClick(){
+    this.authService.logout()
+    this.router.navigate(['/menu/allergeni'])
+  }
+
+  sideDisplay = {
+    value: 'display: none;',
+    toggle(){
+      if(this.value == 'display: none;'){
+        this.value = ''
+      }else{
+        this.value = 'display: none;'
+      }
+    }
   }
 }

@@ -5,9 +5,6 @@
         </li>
         <button class="btn round" (click)="deletePage(page)">X</button>
     }
-    <li class="span">
-        <a href="http://localhost:4200/menu/allergeni">menu</a>
-    </li>
     <li>
         <button class="btn round" [style]="display.value" (click)="display.toggle()">+</button>
     </li>
@@ -21,4 +18,25 @@
         
 
     </li>
+    <li>
+        <button class="btn" (click)="sideDisplay.toggle()">
+            <img src="assets/menu.png" id="sideNavMenu">
+        </button>
+    </li>
 </ul>
+<div id="sideNavBox" [style]="sideDisplay.value">
+    <ul id="sideNav">
+        <button class="btn" id="x" (click)="sideDisplay.toggle()">
+            <img src="assets/X.png" id="x">
+        </button>
+        <li>
+            <a class="span" [routerLink]="['..','options']">opzioni</a>
+        </li>
+        <li>
+            <a class="span">accessi</a>
+        </li>
+        <li>
+            <a class="span" (click)="menuClick()">logout</a>
+        </li>
+    </ul>
+</div>

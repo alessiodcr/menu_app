@@ -21,7 +21,7 @@
         </div>
         <div class="selezione inl-flx">
           <button class="btn round">
-            <img src="assets/edit.png" alt="modifica" (click)="displayEdit.setTrue(product)">
+            <img src="assets/edit.png" alt="modifica" (click)="editsetTrue(product)">
           </button>
           <button class="btn round delete" (click)="deleteProduct(product)">
             <img src="assets/delete.png" alt="cancella" id="delete">
@@ -31,32 +31,32 @@
       </div>
       }
       <div id="empty">
-        <form onsubmit="return false">
+        <form [formGroup]="newProductForm" (submit)="handlePost()">
         <div class="product" id="newProduct" [style]="display.formValue">
           
           <div class="img">
             <input type="file" value="seleziona un immagine">
           </div>
           <div class="des">       
-              <input type="text" name="nome" id="nome" placeholder="nome" required>
+              <input type="text" formControlName="nome" placeholder="nome">
               <br>
               <br>
-              <input type="text" name="ingredienti" id="ingredienti" placeholder="ingredienti" class="ingredienti" required>
+              <input type="text" formControlName="ingredienti" placeholder="ingredienti" class="ingredienti">
               <br>
               <br>
               <div class="allergeniInput">
               @for (allergene of allergeni; track $index) {
                 <div class="checkbox">
-                  <input type="checkbox" name="{{allergene}}" id="{{allergene}}" value="{{allergene}}">
+                  <input type="checkbox" formControlName="{{allergene}}" id="{{allergene}}" value="{{allergene}}">
                   <label for="{{allergene}}">{{allergene}}</label>
                 </div>
               }
             </div>
           </div>
           <div class="price" style="display: inline;">
-            <input type="number"  name="prezzo" id="prezzo" placeholder="prezzo" required>
+            <input type="number"  formControlName="prezzo" placeholder="prezzo">
           </div>
-          <button class="btn" (click)="handleSubmit()">crea</button>
+          <button class="btn primary" type="submit">crea</button>
         
         </div>
       </form>
@@ -67,37 +67,30 @@
       </div>
 </div>
 <div id="editDiv" [style]="displayEdit.value">
-  <form onsubmit="return false">
+  <form [formGroup]="editProductForm" (submit)="handlePut()">
     <div class="product" id="editProduct" >
       
       <div class="img">
         <input type="file">
       </div>
       <div class="des">    
-        <input type="text" class="titolo" name="editNome" id="editNome" placeholder="nome" value="{{displayEdit.product.nome}}"> 
+        <input type="text" class="titolo" placeholder="nome" formControlName="nome"> 
         <br><br>  
-        <input type="text" class="ingredienti" name="editIngredienti" id="editIngredienti" placeholder="ingredienti" value="{{displayEdit.product.ingredienti}}"> 
+        <input type="text" class="ingredienti"  formControlName="ingredienti" placeholder="ingredienti"> 
         <br><br> 
           <div class="allergeniInput">
-          @for (allergene of allergeni; track $index) {
-            @if(displayEdit.product.allergeni.includes(allergene)){
+            @for (allergene of allergeni; track $index) {
               <div class="checkbox">
-                <input type="checkbox" name="edit{allergene}}" id="edit{{allergene}}" value="{{allergene}}" checked>
+                <input type="checkbox" formControlName="{{allergene}}" id="edit{{allergene}}" value="{{allergene}}">
                 <label for="{{allergene}}">{{allergene}}</label>
               </div>
-            }@else {
-              <div class="checkbox">
-                <input type="checkbox" name="edit{{allergene}}" id="edit{{allergene}}" value="{{allergene}}">
-                <label for="edit{{allergene}}">{{allergene}}</label>
-              </div>
             }
-          }
         </div>
       </div>
       <div class="price" style="display: inline;">
-        <input type="text" class="prezzo" name="editPrezzo" id="editPrezzo" placeholder="prezzo" value="{{(displayEdit.product.prezzo) }}">
+        <input type="text" formControlName="prezzo" id="editPrezzo" placeholder="prezzo">
       </div>
-      <input type="submit" value="modifica" class="btn" (click)="handlePut()">
+      <button class="btn primary" type="submit">modifica</button>
     </div>
   </form>
 </div>
