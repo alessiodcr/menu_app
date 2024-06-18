@@ -1,0 +1,23 @@
+<div id="pendings">
+    <h2>
+        Richieste Registrazione
+    </h2>
+        @for (account of pendings; track $index) {
+            <div class="pending">
+                <h2>email:  {{account.email}}</h2>
+                <h2>password:  {{account.password}}</h2>
+                <button class="btn" (click)="approve(account)">accetta richiesta</button>
+                <button class="btn" (click)="reject(account)">rifiuta richiesta</button>
+            </div>
+        }
+</div>
+<div id="users">
+    <h2>Utenti Registrati</h2>
+    @for (account of users; track $index) {
+        <div class="user">
+            <h2>email:  {{account.email}}</h2>
+            <h2>password:  {{account.password}}</h2>
+            <button class="btn" (click)="removeAccount(account)">rimuovi account</button>
+        </div>
+    }
+</div>

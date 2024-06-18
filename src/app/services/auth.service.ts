@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { accounts } from '../../types';
 
 @Injectable({
   providedIn: 'root'
@@ -83,16 +84,13 @@ export class AuthService {
   }*/
 
   // Register
-  register(name:string, email:string, password:string, password_confirmation:string){
+  register(email:string, password:string, password_confirmation:string){
     const data={
-      name:name,
       email:email,
       password:password,
-      password_confirmation:password_confirmation,
+      confirm:password_confirmation,
     }
-
-    return this.http.post(this.environment.API_EndPoint_aut+'register', data);
-    
+    return this.http.post('http://localhost:3000/register', data);
   }
 
   // Forgot Pass
@@ -110,4 +108,8 @@ export class AuthService {
     }
     return this.http.post(this.environment.API_EndPoint_aut+'reset', data);
   }
+
+
+  
+  
 }

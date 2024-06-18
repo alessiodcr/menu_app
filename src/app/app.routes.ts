@@ -8,6 +8,9 @@ import { LoginComponent } from './login/login.component';
 import { authGuard } from './services/auth.guard';
 import { ConfigComponent } from './config/config.component';
 import { OptionsComponent } from './config/options/options.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import path from 'path';
+import { AccessiComponent } from './config/accessi/accessi.component';
 
 export const routes: Routes = [
     {
@@ -52,12 +55,20 @@ export const routes: Routes = [
             {
                 path: 'options',
                 component: OptionsComponent
+            },
+            {
+                path: 'accessi',
+                component: AccessiComponent
             }
         ]
     },
     {
         path:"login",
         component: LoginComponent
+    },
+    {
+        path: 'sign-in',
+        component: SignInComponent
     },
     {
         path: '**',

@@ -8,12 +8,13 @@ import { GridComponent } from './layout/grid/grid.component';
 import { FilterComponent } from './layout/filter/filter.component';
 import { CartComponent } from './layout/cart/cart.component';
 import { AllergeniComponent } from './layout/allergeni/allergeni.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, NavComponent, CommonModule,
     ArrowComponent,GridComponent, FilterComponent, CartComponent, AllergeniComponent,
-    RouterLink, RouterLinkActive
+    RouterLink, RouterLinkActive, SignInComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

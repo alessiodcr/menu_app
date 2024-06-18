@@ -1,0 +1,15 @@
+<div id="signInForm">
+    <h1>registrati</h1>
+    <form [formGroup]="registerForm" (submit)="handleSubmit()">
+        <div id="email">
+            <input type="email" placeholder="email" formControlName="email">
+        </div>
+        <div id="password">
+            <input type="password" placeholder="password" formControlName="password">
+        </div>
+        <div id="confirm">
+            <input type="password" placeholder="conferma password" formControlName="confirm">
+        </div>
+        <button type="submit" class="btn">registrati</button>
+    </form>
+</div>

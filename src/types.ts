@@ -60,3 +60,10 @@ export interface options{
     piccoli: string | number,
     grandi: string | number
 }
+export interface account{
+    email: string,
+    password: string
+}
+export interface accounts{
+    users: account[]
+}
