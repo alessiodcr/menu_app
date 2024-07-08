@@ -130,8 +130,6 @@ handlePost(){
     img: this.newProductForm.value.image ,
     allergeni:[]
   }
-  console.log(JSON.parse(this.newProductForm.value.image)
-  )
   this.allergeni.forEach(allergene =>{
     if(this.newProductForm.value[allergene as keyof typeof this.newProductForm.value]){
       product.allergeni.push(allergene)
