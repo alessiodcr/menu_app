@@ -1,0 +1,15 @@
+#navbutton{
+    position: absolute;
+    right: 0;
+}
+#sideNavBox{
+    z-index: 1000;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+}
+#x{
+    position: relative;
+    top: 0;
+}

@@ -19,24 +19,7 @@
 
     </li>
     <li>
-        <button class="btn" (click)="sideDisplay.toggle()">
-            <img src="assets/menu.png" id="sideNavMenu">
-        </button>
+        
     </li>
 </ul>
-<div id="sideNavBox" [style]="sideDisplay.value">
-    <ul id="sideNav">
-        <button class="btn" id="x" (click)="sideDisplay.toggle()">
-            <img src="assets/X.png" id="x">
-        </button>
-        <li>
-            <a class="span" [routerLink]="['..','options']">opzioni</a>
-        </li>
-        <li>
-            <a class="span" [routerLink]="['..', 'accessi']">accessi</a>
-        </li>
-        <li>
-            <a class="span" (click)="menuClick()">logout</a>
-        </li>
-    </ul>
-</div>
+

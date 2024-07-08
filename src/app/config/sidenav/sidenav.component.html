@@ -1,0 +1,27 @@
+<button class="btn" (click)="sideDisplay.toggle()" id="navbutton">
+    <img src="assets/menu.png" id="sideNavMenu">
+</button>
+<div id="sideNavBox" [style]="sideDisplay.value">
+    <ul id="sideNav">
+        <button class="btn" id="x" (click)="sideDisplay.toggle()">
+            <img src="assets/X.png" id="x">
+        </button>
+        <li>
+            <a class="span" [routerLink]="['options']">opzioni</a>
+        </li>
+        <li>
+            <a class="span" [routerLink]="['accessi']">accessi</a>
+        </li>
+        <li>
+            <a class="span" [routerLink]="['menu/allergeni']">menu</a>
+        </li>
+        <li>
+            <span>acccount: <br> {{account.email}}</span>
+            <br>
+            <span>permessi: <br>{{account.class}}</span>
+            <br>
+            <button class="btn" (click)="menuClick()">logout</button>
+        </li>
+
+    </ul>
+</div>

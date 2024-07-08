@@ -1,70 +1,258 @@
 /* You can add global styles to this file, and also import other style files */
-*{
-    font-family: 'Montserrat', sans-serif;
-    flex-shrink: 1;
+:root{
+    --primario: ;
+    --secondario: ;
+    --terziario: ;
+    --immagine: inline-flex;
+    --piccoli: 16px;
+    --grandi: 20px;
+    --grandi2: 40px;
+    --font1: 'Montserrat', sans-serif;
+    --font2: 'Montserrat', sans-serif;
 }
-body{
+*{
+    font-family: var(--font1);
+    flex-shrink: 1;
     margin: 0;
     max-width: 100%;
-}
-.btn, #btn{
-    cursor: pointer;
-    background-color: #508078;
-    border-radius: 5px;
-    margin: 5px;
-    color: white;
-    font-size: 15px;
-    border: none;
     box-sizing: border-box;
-    box-shadow: 2px 2px 3px;
 }
-.btn:active{
-    cursor: pointer;
-    background-color: #6d8581;
+body{
+    width:95%;
+    margin: 2%;
 }
-.round{
-    border-radius: 100%;
-    width: 1.5rem;
-    height: 1.5rem;
-}
-@media only screen and (max-width: 250px) {
-    *{
-        flex-shrink: 0;
-    }
+/*menu lauout*/
+app-layout{
+
 }
 
 
-.products{
-    display: block;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+
+/*home*/
+#home{
+    display: flex;
     width: 100%;
-    overflow: hidden;
     height: 100%;
-    padding-bottom: 10%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content:space-between;
+    overflow: hidden;
+}
+#homeLogoDiv, #Menu, #lenguageForm{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#lingua{
+    font-weight: normal;
+    text-align: center;
+    width: 100%;
+}
+#Menu{
+    font-family: var(--font2);
+    cursor: pointer;
+    color: var(--primario);
+}
+#homeLogoDiv{
+    width: fit-content;
+    height: fit-content;
+    margin-top: 5%;
+    padding-bottom: 20%;
+}   
+#lenguageForm{
+
+} 
+
+/*end home*/
+
+
+
+/*navbar*/
+#nav{
+    background-color: var(--secondario);
+    width: 95%;
+    position: fixed;
+    top: 0;
+    padding-top: 2%;
+    display: inline-flex;
+    justify-content: space-around;
+    list-style: none;
+    z-index: 1;
+    overflow-x: scroll;
+}
+#nav::-webkit-scrollbar {
+    display: none;
+  }
+#nav .span{
+ color: var(--primario);
+ padding: 0.5% 1%;
+ text-transform: uppercase;
+ font-weight: bold;
+}
+#nav .span:hover{
+    cursor: pointer;
+    color: var(--secondario);
+    background-color: var(--primario);
+    border-radius: 50px;
+}
+/*active route style*/
+#nav .active{
+    cursor: pointer;
+    color: var(--secondario);
+    background-color: var(--primario);
+    border-radius: 50px;
+}
+/*end nav*/
+
+/*footer*/
+ #footer{
+    z-index: 1;
+    position: fixed;
+    bottom: 0;
+    background-color: var(--secondario);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#pages{
+    display: inline-flex;
+    justify-content: center;
+    padding-bottom: 1%;
+    overflow-x: scroll;
+    width: 40%;
+    gap: 4%;
+}   
+#pages::-webkit-scrollbar {
+    display: none;
+  }
+.page{
+    position:relative;
+    width:1.5em;
+    height:1.5em;
+    background:var(--primario);
+    border-radius:50%;
+    cursor: pointer;
+}
+.footerActive{
+    background: var(--primario );
+    opacity: 0.5;
+}
+#coperto{
+    width: 70%;
+    font-weight: normal;
+    text-align: end;
+}
+/*end footer*/
+
+
+/*grid*/
+.gridWrapper{
+    width: 100%; 
+}
+#grid{
+    position: relative;
+    margin-top: 8%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.products{
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
 }
 .product{
     display: inline-flex;
-    border-radius: 10px;
-    border: 1px solid black;
-    width: 99%;
-    height: 7em;
-    margin-bottom: 5px;
-    box-shadow: 2px 2px 3px;
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 1em;
 }
-
-.selezione{
-    position: absolute;
-    right: 5%;
-    margin-bottom: 7%;
-    width: 10%;
-    display: inline-flex;
-    align-self: center;
+.infoButton{
+    overflow: hidden;
+    border: 0.4em solid var(--primario);
+    border-radius: 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
 }
-.des{
-    margin: 0 2%;
-    width: 75%;
+.productInfoImg{
+    opacity: 0.5;
+    background-color: var(--primario);
 }
+.productName{
+    font-size: var(--font1);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.ingredienti{
+    font-size: var(--font2);
+    font-weight:normal;
+}
+.price{
+    font-weight: normal;
+}
+.allergene{
+    height: 2em;
+}
+.productProprieties{
+    width: 80%;
+}
+
+
+
+/*end grid*/
+
+
+/*info product*/
+#productInfo{
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#productImg{
+    width: 100%;
+    height: 100%;
+}
+#productImgDiv{
+    width: 35%;
+}
+#productInfoProprieties{
+    width: 35%;
+    background-color: var(--secondario);
+}
+#productInfoName{
+    font-size: var(--font1);
+    text-transform: uppercase;
+}
+#productInfoIngredienti{
+    font-size: var(--font2);
+    font-weight: normal;
+}
+#productInfoPrice{
+    font-weight: normal;
+    font-size: var(--font2);
+}
+.productInfoAllergeni{
+    height: 2em;
+}
+#closeInfoButton{
+    background-color: rgba(255, 255, 255, 1);
+    border: 3px solid var(--primario);
+    border-radius: 50%;
+    color: var(--primario);
+    font-weight: 300;
+    cursor: pointer;
+}
+/*end info product*/

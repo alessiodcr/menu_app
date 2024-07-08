@@ -8,6 +8,7 @@ import { accounts } from '../../types';
 })
 export class AuthService {
   private isLoggedIn = new BehaviorSubject<boolean>(false);
+  private accountClass = new BehaviorSubject<string>('ciao');
   private environment = {
     API_EndPoint_aut: ''
   }
@@ -36,6 +37,26 @@ export class AuthService {
      this.isLoggedIn.next(true)
     }
     return this.isLoggedIn.asObservable();
+  }
+
+  class(){
+    const localData: any = localStorage.getItem('user')
+    if (!localData) {
+      this.isLoggedIn.next(false);
+       console.log('User not lgged in !!');
+    } else {
+      const userObj = JSON.parse(localData);
+      const token_expires_at = new Date(userObj.token_expires_at);
+      const current_date = new Date();
+      /*if (token_expires_at > current_date) {
+        this.isLoggedIn.next(true);
+      } else {
+        this.isLoggedIn.next(false);
+         console.log('Token Expires!!');
+      }*/
+     this.accountClass.next(userObj['class'])
+    }
+    return this.accountClass.asObservable();
   }
 
   // Login

@@ -1,4 +1,7 @@
 <div class="products">
+  @if (products.length == 0) {
+    <h1>Ancora non hai aggiunto prodotti</h1>
+  }
   @for (product of products; track $index) {
     
       <div class="product">
@@ -35,7 +38,7 @@
         <div class="product" id="newProduct" [style]="display.formValue">
           
           <div class="img">
-            <input type="file" value="seleziona un immagine">
+            <input type="file" value="seleziona un immagine" (change)="onImagePicked($event)" >
           </div>
           <div class="des">       
               <input type="text" formControlName="nome" placeholder="nome">

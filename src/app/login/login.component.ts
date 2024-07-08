@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule} from '@angular/forms';
+import { FormGroup, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 @Component({
@@ -14,10 +14,10 @@ export class LoginComponent {
     private authService: AuthService,
     private router: Router
   ){}
-  
+  errorMsg: string = ''
   loginForm = new FormGroup({
-    email: new FormControl('',),
-    password: new FormControl('', )
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.pattern('^((?!.*[s])(?=.*[A-Z])(?=.*d).{8,99})')])
   },)
 
   /*submitForm(){
@@ -28,7 +28,7 @@ export class LoginComponent {
         localStorage.setItem('user', JSON.stringify(res))
         this.router.navigate(['config/menu/allergeni'])
       }, err =>{
-        
+        this.errorMsg = err.error
       }
       )
     }

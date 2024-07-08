@@ -3,10 +3,10 @@ import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } fr
 import { AuthService } from './auth.service';
 import { map, take } from 'rxjs';
 
-export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  return inject(AuthService).status().pipe(take(1),map((loggedIn:boolean)=>{
-    if(loggedIn){
-      return true;
+export const superGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  return inject(AuthService).class().pipe(take(1),map((accountClass:string)=>{
+    if(accountClass == 'super'){
+      return true
     }else{
      return inject(Router).createUrlTree(['/login']);
     }

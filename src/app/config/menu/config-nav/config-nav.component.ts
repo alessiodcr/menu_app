@@ -56,19 +56,5 @@ export class ConfigNavComponent {
     })
   }
 
-  menuClick(){
-    this.authService.logout()
-    this.router.navigate(['/menu/allergeni'])
-  }
-
-  sideDisplay = {
-    value: 'display: none;',
-    toggle(){
-      if(this.value == 'display: none;'){
-        this.value = ''
-      }else{
-        this.value = 'display: none;'
-      }
-    }
-  }
+  
 }

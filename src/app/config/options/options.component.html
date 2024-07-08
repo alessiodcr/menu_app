@@ -17,15 +17,42 @@
             <label for="immagine">mostra immagine dei prodotti</label>
             <input type="checkbox" id="immagine" formControlName="immagine">     
         </div>
-        <div id="font1" class="input">
+        <div id="fontsize1" class="input">
             <label for="fontG">grandezza caratteri grandi: {{optionsForm.value.grandi}}</label>
             <input type="range" id="fontG" step="1" min="10" max="24" formControlName="grandi">
             <span [style]="fontGrandi()">esempio</span>
         </div>
-        <div id="font2" class="input">
+        <div id="fontsize2" class="input">
             <label for="font2P">grandezza caratteri piccoli: {{optionsForm.value.piccoli}}</label>  
             <input type="range" id="font2P" step="1" min="8" max="20" formControlName="piccoli">
             <span [style]="fontPiccoli()"> esempio</span>
+        </div>
+        <div id="fontsize3" class="input">
+            <label for="font3P">grandezza caratteri piccoli: {{optionsForm.value.piccoli}}</label>  
+            <input type="range" id="font3P" step="1" min="20" max="40" formControlName="grandi2">
+            <span [style]="fontGrandi2()"> esempio</span>
+        </div>
+        <div id="font1" class="input">
+            <label for="font1">font 1: {{optionsForm.value.font1}}</label>  
+            <input type="range" id="font1" step="1" min="8" max="20" formControlName="font1">
+            <span [style]="font1()"> esempio</span>
+        </div>
+        <div id="font2" class="input">
+            <label for="font2">font 1: {{optionsForm.value.font2}}</label>  
+            <input type="" id="font2" step="1" min="8" max="20" formControlName="font2">
+            <span [style]="font2()"> esempio</span>
+        </div>
+        <div id="allergeni">
+            @for (allergene of allergeni; track $index) {
+                <div>
+                    <input type="file" id="{{allergene}}" class="input">
+                    <label for="{{allergene}}">logo {{allergene}}</label>
+                </div>
+            }
+        </div>
+        <div id="optionLogo" class="input">
+            <input type="file" id="logoRistorante">
+            <label for="logoRistorante">logo del Ristorante</label>
         </div>
         <button type="submit" class="btn">conferma</button>
     </form>

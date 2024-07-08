@@ -9,14 +9,26 @@ import { authGuard } from './services/auth.guard';
 import { ConfigComponent } from './config/config.component';
 import { OptionsComponent } from './config/options/options.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import path from 'path';
 import { AccessiComponent } from './config/accessi/accessi.component';
+import { superGuard } from './services/super.guard';
+import { HomeComponent } from './home/home.component';
+import { NavigateComponent } from './navigate/navigate.component';
 
 export const routes: Routes = [
     {
         path:"",
         pathMatch:'full',
-        redirectTo:"/menu/allergeni"
+        redirectTo:"/home"
+    },
+    {
+        path:"home",
+        component: HomeComponent,
+        outlet: "primary"
+    },
+    {
+        path: 'navigate',
+        component: NavigateComponent,
+        outlet: 'primary'
     },
     {
         path:"menu",
@@ -58,6 +70,7 @@ export const routes: Routes = [
             },
             {
                 path: 'accessi',
+                canActivate: [superGuard],
                 component: AccessiComponent
             }
         ]
@@ -72,6 +85,6 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: '/menu/allergeni'
+        redirectTo: '/home'
     }
 ];

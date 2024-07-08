@@ -18,6 +18,7 @@ export class ConfigGridComponent {
     nome: new FormControl(''),
     ingredienti: new FormControl(''),
     prezzo: new FormControl(''),
+    image: new FormControl(),
     cereali: new FormControl(false),
     crostacei: new FormControl(false),
     uova: new FormControl(false),
@@ -126,9 +127,11 @@ handlePost(){
     ingredienti: this.newProductForm.value.ingredienti ?? '',
     prezzo: '€' + this.newProductForm.value.prezzo ?? '',
     quantita: 0,
-    img: 'assets/pasta.jpeg',
+    img: this.newProductForm.value.image ,
     allergeni:[]
   }
+  console.log(JSON.parse(this.newProductForm.value.image)
+  )
   this.allergeni.forEach(allergene =>{
     if(this.newProductForm.value[allergene as keyof typeof this.newProductForm.value]){
       product.allergeni.push(allergene)
@@ -166,6 +169,10 @@ displayEdit = {
     this.displayEdit.value = 'display: none'
   }
 
+  onImagePicked(event: Event) {
+    const file = (event.target as any).files[0]; // Here we use only the first file (single file)
+    this.newProductForm.patchValue({ image: file});
+  }
 
 setInitialValue(){
   this.editProductForm.controls['nome'].setValue(this.displayEdit.product.nome)

@@ -132,7 +132,7 @@ export class GridComponent {
 
   products: Product[] = []; //array dei prodotti standard
 
-  coperto:number = 0
+  
 
   filters:string[] = []; //array dei filtri selezionati
 
@@ -165,10 +165,7 @@ export class GridComponent {
     //console.log(this.fProducts)
     })
 
-    this.copertoService.getCoperto(`http://localhost:3000/coperto`).subscribe(data=>{
-      this.coperto  = data.coperto
-      console.log(data.coperto)
-    })
+    
     
   
     //console.log('sosss')
@@ -284,8 +281,4 @@ export class GridComponent {
       console.log(this.cart)
    }
    */
-
-  route(){
-    return this.router.url.slice(6).toUpperCase()
-  }
 }

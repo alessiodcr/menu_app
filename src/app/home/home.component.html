@@ -1,0 +1,17 @@
+<div id="home">
+    <div id="homeLogoDiv">
+        <img src="" alt="logo" id="homeLogo">
+    </div>
+    <div id="Menu" [routerLink]="['..', 'navigate']">
+        <h1>MENU</h1>
+    </div>
+    <div id="lenguageForm">
+        <h3 id="lingua">LINGUA</h3>
+        <form [formGroup]="lenguageForm" id="lenguageForm">
+            <select name="" id="lenguageSelection" formControlName="selection">
+                <option value="italiano">ITALIANO</option>
+                <option value="inglese">INGLESE</option>
+            </select>
+        </form>
+    </div>
+</div>

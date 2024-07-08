@@ -3,7 +3,6 @@ import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
 import { Pages } from '../../types';
 import { HttpClient } from '@angular/common/http';
-import { url } from 'inspector';
 
 @Injectable({
   providedIn: 'root'

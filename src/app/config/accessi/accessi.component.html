@@ -2,22 +2,42 @@
     <h2>
         Richieste Registrazione
     </h2>
-        @for (account of pendings; track $index) {
-            <div class="pending">
-                <h2>email:  {{account.email}}</h2>
-                <h2>password:  {{account.password}}</h2>
-                <button class="btn" (click)="approve(account)">accetta richiesta</button>
-                <button class="btn" (click)="reject(account)">rifiuta richiesta</button>
-            </div>
-        }
+    <table>
+        <thead>
+            <tr>
+                <td>email</td>
+                <td>permessi</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (account of pendings; track $index) {
+                <tr class="pending">
+                    <td>{{account.email}}</td>
+                    <td>{{account.class}}</td>
+                    <td><button class="btn" (click)="approve(account)">accetta richiesta</button></td>
+                    <td><button class="btn" (click)="reject(account)">rifiuta richiesta</button></td> 
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 <div id="users">
     <h2>Utenti Registrati</h2>
-    @for (account of users; track $index) {
-        <div class="user">
-            <h2>email:  {{account.email}}</h2>
-            <h2>password:  {{account.password}}</h2>
-            <button class="btn" (click)="removeAccount(account)">rimuovi account</button>
-        </div>
-    }
+    <table>
+        <thead>
+            <tr>
+                <td>email</td>
+                <td>permessi</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (account of users; track $index) {
+                <tr class="user">
+                    <td>{{account.email}}</td>
+                    <td>{{account.class}}</td>
+                    <td><button class="btn" (click)="removeAccount(account)">rimuovi account</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

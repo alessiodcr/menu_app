@@ -1,0 +1,15 @@
+<div id="navigate">
+    <div id="navigateLogoDiv">
+        <img src="" alt="" id="navigateLogo">
+    </div>
+    <ul id="navigateNav">
+        @for (page of pages; track $index) {
+            <li class="navigatePage" [routerLink]="['..' , 'menu', page]">
+                {{page}}
+            </li>
+        }
+        <li class="navigatePage" id="navigateAllergeni" [routerLink]="['..', 'menu' , 'allergeni']">
+            allergeni
+        </li>
+    </ul>
+</div>

@@ -53,14 +53,19 @@ export interface PaginationParams {
     id: number;
 }
 export interface options{
-    primario: number,
-    secondario: number,
-    terziario: number,
+    primario: string,
+    secondario: string,
+    terziario: string,
     immagine: boolean,
-    piccoli: string | number,
-    grandi: string | number
+    piccoli: string,
+    grandi: string,
+    grandi2: string,
+    font1: string,
+    font2: string,
+
 }
 export interface account{
+    class: string,
     email: string,
     password: string
 }
