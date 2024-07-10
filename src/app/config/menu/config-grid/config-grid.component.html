@@ -38,7 +38,7 @@
         <div class="product" id="newProduct" [style]="display.formValue">
           
           <div class="img">
-            <input type="file" value="seleziona un immagine" (change)="onImagePicked($event)" >
+            <input type="file" value="seleziona un immagine" (change)="onImagePicked($event)">
           </div>
           <div class="des">       
               <input type="text" formControlName="nome" placeholder="nome">
@@ -74,7 +74,7 @@
     <div class="product" id="editProduct" >
       
       <div class="img">
-        <input type="file">
+        <input type="file" (change)="onImagePut($event)">
       </div>
       <div class="des">    
         <input type="text" class="titolo" placeholder="nome" formControlName="nome"> 

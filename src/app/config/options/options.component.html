@@ -1,6 +1,6 @@
 <div id="options">
     <h1>Opzioni</h1>
-    <form [formGroup]="optionsForm" (submit)="handleSubscribe()">
+    <form [formGroup]="optionsForm" (submit)="handleSubmit()">
         <div class="input" id="color1">
             <label for="first">colore primario</label>
             <input type="color" id="first" formControlName="primario">
@@ -42,18 +42,20 @@
             <input type="" id="font2" step="1" min="8" max="20" formControlName="font2">
             <span [style]="font2()"> esempio</span>
         </div>
+        <button type="submit" class="btn">conferma</button>
+    </form>
+    <form [formGroup]="imgForm">
         <div id="allergeni">
             @for (allergene of allergeni; track $index) {
                 <div>
-                    <input type="file" id="{{allergene}}" class="input">
+                    <input type="file" id="{{allergene}}" class="input" (change)="onImagePicked($event)">
                     <label for="{{allergene}}">logo {{allergene}}</label>
                 </div>
             }
         </div>
-        <div id="optionLogo" class="input">
-            <input type="file" id="logoRistorante">
+        <div id="optionLogoDiv" class="input">
+            <input type="file" id="optionsLogo" (change)="onImagePicked($event)">
             <label for="logoRistorante">logo del Ristorante</label>
         </div>
-        <button type="submit" class="btn">conferma</button>
     </form>
 </div>

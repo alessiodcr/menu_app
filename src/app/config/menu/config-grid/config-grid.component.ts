@@ -5,6 +5,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { allergeneImg, } from '../../../../assets/utils';
 import { __values } from 'tslib';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ImgUploadService } from '../../../services/img-upload.service';
 @Component({
   selector: 'app-config-grid',
   standalone: true,
@@ -40,6 +41,7 @@ export class ConfigGridComponent {
   constructor(
     private productService: ProductsService,
     private router: Router,
+    private uploadImg: ImgUploadService
   ){
     router.events.forEach((event) => {
       if(event instanceof NavigationStart) {
@@ -127,11 +129,13 @@ handlePost(){
     ingredienti: this.newProductForm.value.ingredienti ?? '',
     prezzo: '€' + this.newProductForm.value.prezzo ?? '',
     quantita: 0,
-    img: this.newProductForm.value.image ,
+    img: `http://localhost:3000/img/${this.newProductForm.value.nome + this.newProductForm.value.image.name.slice(this.newProductForm.value.image.name.indexOf('.'))}` ,
     allergeni:[]
   }
-  console.log(JSON.parse(this.newProductForm.value.image)
-  )
+  this.uploadImg.uploadImg(this.newProductForm.value.image, product.nome).subscribe(res=>{
+  }, err=>{
+    console.log(err)
+  })
   this.allergeni.forEach(allergene =>{
     if(this.newProductForm.value[allergene as keyof typeof this.newProductForm.value]){
       product.allergeni.push(allergene)
@@ -170,7 +174,7 @@ displayEdit = {
   }
 
   onImagePicked(event: Event) {
-    const file = (event.target as any).files[0]; // Here we use only the first file (single file)
+    const file = (event.target as any).files[0];
     this.newProductForm.patchValue({ image: file});
   }
 
@@ -202,6 +206,7 @@ editProductForm = new FormGroup({
   nome: new FormControl(),
   ingredienti: new FormControl(),
   prezzo: new FormControl(),
+  img: new FormControl(),
   cereali: new FormControl(),
   crostacei: new FormControl(),
   uova: new FormControl(),
@@ -222,7 +227,10 @@ editProductForm = new FormGroup({
 
 
 
-
+  onImagePut(event:any){
+    const file = event.target.files[0]
+    this.editProductForm.patchValue({img: file})
+  } 
 
 
   handlePut(){
@@ -232,9 +240,14 @@ editProductForm = new FormGroup({
       ingredienti: this.editProductForm.value.ingredienti,
       prezzo:   this.editProductForm.value.prezzo,
       quantita: 0,
-      img: 'assets/pasta.jpeg',
+      img: `http://localhost:3000/img/${this.editProductForm.value.img.name}` ?? prevProduct.img,
       allergeni:[]
     }
+    this.uploadImg.uploadImg(this.editProductForm.value.img, newProduct.nome).subscribe(res=>{},
+      err=>{
+        console.log(err)
+      }
+    )
     this.allergeni.forEach(allergene =>{
       if(this.editProductForm.value[allergene as keyof typeof this.editProductForm.value]){
         newProduct.allergeni.push(allergene)

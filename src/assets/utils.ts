@@ -12,7 +12,7 @@ export function prodToCart(cart: Product[], products:Product[]){
 
 
 export function allergeneImg(allergene:string){
-  return `assets/${allergene}.png`;
+  return `http://localhost:3000/img/${allergene}.png`;
  }
 export function pageRoute(index: number, pages: string[]){
   return   pages[index]

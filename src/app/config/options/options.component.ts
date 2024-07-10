@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { OptionsService } from '../../services/options.service';
 import { options } from '../../../types';
+import { ImgUploadService } from '../../services/img-upload.service';
 @Component({
   selector: 'app-options',
   standalone: true,
@@ -10,7 +11,9 @@ import { options } from '../../../types';
   styleUrl: './options.component.css'
 })
 export class OptionsComponent {
-  constructor (private optionsService: OptionsService){}
+  constructor (private optionsService: OptionsService,
+    private publicUpload: ImgUploadService
+  ){}
   ngOnInit(){
     this.optionsService.getOptions().subscribe(res =>{
       this.optionsForm.controls.primario.setValue(res.primario)
@@ -35,6 +38,24 @@ export class OptionsComponent {
     font2: new FormControl()
   })
 
+  imgForm = new FormGroup({
+    cereali: new FormControl(),
+    crostacei: new FormControl(),
+    uova: new FormControl(),
+    pesce: new FormControl(),
+    arachidi: new FormControl(),
+    soia: new FormControl(),
+    latte: new FormControl(),
+    fruttaAGuscio: new FormControl(),
+    sedano: new FormControl(),
+    senape: new FormControl(),
+    sesamo: new FormControl(),
+    Asolforica: new FormControl(),
+    lupini: new FormControl(),
+    molluschi: new FormControl(),
+    funghi: new FormControl(),
+    optionsLogo: new FormControl()
+  })
 
   allergeni: string[] = ['cereali', 'crostacei', "uova","pesce", "arachidi","soia","latte","fruttaAGuscio","sedano","senape","sesamo","Asolforica","lupini","molluschi", "funghi"]
 
@@ -54,10 +75,17 @@ export class OptionsComponent {
     return `font-family: ${this.optionsForm.value.font2}`
   }
 
+  onImagePicked(event:any){
+    const filename:string = event.target.id 
+    const file = event.target.files[0]
+    this.imgForm.get(`${filename}`)?.setValue(file)
+    this.publicUpload.uploadImg(file, filename).subscribe(res=>{},err=>{console.log(err)})
+  }
+
 
   
 
-  handleSubscribe(){
+  handleSubmit(){
     const options: options = {
       primario: this.optionsForm.value.primario,
       secondario: this.optionsForm.value.secondario,
