@@ -132,8 +132,9 @@ handlePost(){
     img: `http://localhost:3000/img/${this.newProductForm.value.nome + this.newProductForm.value.image.name.slice(this.newProductForm.value.image.name.indexOf('.'))}` ,
     allergeni:[]
   }
-  console.log(JSON.parse(this.newProductForm.value.image)
-  )
+  this.uploadImg.uploadImg(this.newProductForm.value.image, product.nome).subscribe(res=>{},err=>{
+    console.log(err)
+  })
   this.allergeni.forEach(allergene =>{
     if(this.newProductForm.value[allergene as keyof typeof this.newProductForm.value]){
       product.allergeni.push(allergene)
