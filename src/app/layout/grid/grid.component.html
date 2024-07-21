@@ -1,53 +1,131 @@
 <div id="grid">
-    <div class="products">
-      @if (fProducts.length == 0) {
-        <h1 id="nessunProdotto">Non ci sono prodotti disponibili</h1>
-      }
-    @for (product of fProducts; track $index) {
-        <div class="product">
-          <div class="infoButton" (click)="display.setTrue(product)">
-              <img src="" alt="info sul piatto" class="productInfoImg">
-          </div>
-          <div class="productProprieties">
-            <h3 class="productName">{{product.nome}}</h3>
-            
-            @if (product.allergeni.length > 0) {
-              <h3 class="ingredienti">{{product.ingredienti}}</h3>
-            }@else{
-              <h3 class="ingredienti" style="margin-top: 2rem;">{{product.ingredienti}}</h3>
-            }
-            @for (allergene of product.allergeni; track $index) {
-              <img src="{{allergeneImg(allergene)}}" alt="{{allergene}}" class="allergene">
-            }
-          </div>
-          <div class="priceDiv">
-            <h3 class="price">{{product.prezzo}}</h3>
-          </div>
-          
-        </div>
+  <div class="products" >
+    @if (fProducts.length == 0) {
+    <h1 id="nessunProdotto">Non ci sono prodotti disponibili</h1>
+    } @for (product of fProducts; track $index) {
+    <div class="product">
+      <div class="infoButton" (click)="display.setTrue(product)">
+        <img
+          src="http://localhost:3000/img/infoProdotti.png"
+          alt="info sul piatto"
+          class="productInfoImg"
+        />
+      </div>
+      <div class="productProprieties">
+        <h3 class="productName">{{ product.nome }}</h3>
+        <h3 class="ingredienti">{{ product.ingredienti }}</h3>
+         @for (allergene of product.allergeni; track $index) {
+        <img
+          src="{{ allergeneImg(allergene) }}"
+          alt="{{ allergene }}"
+          class="allergene"
+        />
         }
       </div>
-      
-        
-        <div id="productInfo" [style]="display.value" >
-          <div id="productImgDiv">
-              <img id="productImg" src="{{display.product?.img}}" alt="">
-          </div>
-
-          <div id="productInfoProprieties">
-              <h1 id="productInfoName">{{display.product?.nome}}</h1>
-              <h1 id="productInfoPrice">{{display.product?.prezzo}}</h1>
-              <h2 id="productInfoIngredienti">{{display.product?.ingredienti}}</h2>
-              @for (allergene of display.product?.allergeni; track $index) {
-                <img src="{{allergeneImg(allergene)}}" alt="{{allergene}}" class="productInfoAllergeni">
-              }
-              
-          </div>
-          
-          <div class="closeInfo">
-              <button id="closeInfoButton" (click)="display.setFalse()">X</button>
-          </div>
-          
+      <div class="priceDiv">
+        <h3 class="price">{{ product.prezzo }}</h3>
+      </div>
     </div>
-    
+    }
+  </div>
+
+  <div class="prevProducts">
+    @if (prevProduct.length == 0) {
+    <h1 id="nessunProdotto">Non ci sono prodotti disponibili</h1>
+    } @for (product of prevProduct; track $index) {
+    <div class="product">
+      <div class="infoButton" (click)="display.setTrue(product)">
+        <img
+          src="http://localhost:3000/img/infoProdotti.png"
+          alt="info sul piatto"
+          class="productInfoImg"
+        />
+      </div>
+      <div class="productProprieties">
+        <h3 class="productName">{{ product.nome }}</h3>
+
+        @if (product.allergeni.length > 0) {
+        <h3 class="ingredienti">{{ product.ingredienti }}</h3>
+        }@else{
+        <h3 class="ingredienti" style="margin-top: 2rem">
+          {{ product.ingredienti }}
+        </h3>
+        } @for (allergene of product.allergeni; track $index) {
+        <img
+          src="{{ allergeneImg(allergene) }}"
+          alt="{{ allergene }}"
+          class="allergene"
+        />
+        }
+      </div>
+      <div class="priceDiv">
+        <h3 class="price">{{ product.prezzo }}</h3>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="nextProducts">
+    @if (nextProduct.length == 0) {
+    <h1 id="nessunProdotto">Non ci sono prodotti disponibili</h1>
+    } @for (product of nextProduct; track $index) {
+    <div class="product">
+      <div class="infoButton" (click)="display.setTrue(product)">
+        <img
+          src="http://localhost:3000/img/infoProdotti.png"
+          alt="info sul piatto"
+          class="productInfoImg"
+        />
+      </div>
+      <div class="productProprieties">
+        <h3 class="productName">{{ product.nome }}</h3>
+
+        @if (product.allergeni.length > 0) {
+        <h3 class="ingredienti">{{ product.ingredienti }}</h3>
+        }@else{
+        <h3 class="ingredienti" style="margin-top: 2rem">
+          {{ product.ingredienti }}
+        </h3>
+        } @for (allergene of product.allergeni; track $index) {
+        <img
+          src="{{ allergeneImg(allergene) }}"
+          alt="{{ allergene }}"
+          class="allergene"
+        />
+        }
+      </div>
+      <div class="priceDiv">
+        <h3 class="price">{{ product.prezzo }}</h3>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div id="productInfo" [style]="display.value">
+    <div id="productInfoDiv">
+      <div id="productImgDiv">
+        <img id="productImg" src="{{ display.product?.img }}" alt="" />
+      </div>
+      <div id="productInfoProprietiesDiv">
+        <div id="productInfoProprieties">
+          <h1 id="productInfoName">{{ display.product?.nome }}</h1>
+          <h1 id="productInfoPrice">{{ display.product?.prezzo }}</h1>
+          <h2 id="productInfoIngredienti">
+            {{ display.product?.ingredienti }}
+          </h2>
+          @for (allergene of display.product?.allergeni; track $index) {
+          <img
+            src="{{ allergeneImg(allergene) }}"
+            alt="{{ allergene }}"
+            class="productInfoAllergeni"
+          />
+          }
+        </div>
+      </div>
+
+      <div id="closeInfo">
+        <button id="closeInfoButton" (click)="display.setFalse()">X</button>
+      </div>
+    </div>
+  </div>
 </div>

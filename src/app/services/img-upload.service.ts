@@ -11,11 +11,15 @@ export class ImgUploadService {
     private http: HttpClient
   ) { }
 
-  uploadImg(img: File, name:string){
-    let filename = name + img.name.slice(img.name.indexOf('.'))
+  uploadImg(img: File | null | undefined, name:string){
+    if(img){
+      let filename = name + img.name.slice(img.name.indexOf('.'))
     console.log(filename)
     let formData = new FormData()
     formData.append('img', img, filename)
     return this.http.post('http://localhost:3000/publicImgUpload', formData)
+    }else{
+      return null
+    }
   }
 }

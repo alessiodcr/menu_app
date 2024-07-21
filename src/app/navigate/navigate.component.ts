@@ -16,7 +16,7 @@ export class NavigateComponent {
   }
   pages: string[] = []
   ngOnInit(){
-    this.pageService.getPages('http://localhost:3000/pages').subscribe(res=>{
+    this.pageService.getPages().subscribe(res=>{
       this.pages = res.pages
     })
   }

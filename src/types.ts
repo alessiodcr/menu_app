@@ -67,7 +67,8 @@ export interface options{
 export interface account{
     class: string,
     email: string,
-    password: string
+    password: string,
+    status: string
 }
 export interface accounts{
     users: account[]

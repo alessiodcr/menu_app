@@ -3,56 +3,24 @@ import { PagesService } from '../../../services/pages.service';
 import { Router, RouterLink } from '@angular/router';
 import { pageRoute } from '../../../../assets/utils';
 import { AuthService } from '../../../services/auth.service';
+import { RouterLinkActive } from '@angular/router';
 @Component({
   selector: 'app-config-nav',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './config-nav.component.html',
   styleUrl: './config-nav.component.css'
 })
 export class ConfigNavComponent {
   constructor(
     private pageService: PagesService,
-    private authService: AuthService,
-    private router: Router
-  ){
-
-  }
-  display = {
-    value: '',
-    formValue: 'display: none',
-    toggle(){
-      if(this.value == ''){
-        this.value = 'display: none'
-        this.formValue = ''
-      }else{
-        this.value = ''
-        this.formValue = 'display: none'
-      }
-    }
-  }
+  ){}
+  
   pageRoute = pageRoute
   pages: string[] = []
   ngOnInit(){
-    this.pageService.getPages("http://localhost:3000/pages").subscribe(data =>{
+    this.pageService.getPages().subscribe(data =>{
       this.pages = data.pages
-    })
-  }
-
-  postPage(){
-    const element =document.querySelector('#newPageInput') as  any
-    let value = element.value as string
-    this.pageService.postPage('http://localhost:3000/pages', value).subscribe(data =>{
-      console.log(data)
-      console.log('creato')
-    })
-    element.value = null
-    this.display.toggle()
-  };
-  deletePage(page: string){
-    this.pageService.deletePage('http://localhost:3000/pages', page).subscribe(data =>{
-      console.log(data)
-      console.log('cancellato')
     })
   }
 

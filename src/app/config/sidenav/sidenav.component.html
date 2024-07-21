@@ -7,14 +7,21 @@
             <img src="assets/X.png" id="x">
         </button>
         <li>
-            <a class="span" [routerLink]="['options']">opzioni</a>
+            <span class="span" [routerLink]="['options']">opzioni</span>
         </li>
         <li>
-            <a class="span" [routerLink]="['accessi']">accessi</a>
+            <span class="span" [routerLink]="['accessi']">accessi</span>
         </li>
         <li>
-            <a class="span" [routerLink]="['menu/allergeni']">menu</a>
+            <span class="span" [routerLink]="['menu', pages[0]]">menu</span>
         </li>
+        <li>
+            <span [routerLink]="['portate']">modifica le portate</span>
+        </li>
+        <li>
+            <a href="http://localhost:4200/menu/{{pages[0]}}">ritorna al menu</a>
+        </li>
+        
         <li>
             <span>acccount: <br> {{account.email}}</span>
             <br>

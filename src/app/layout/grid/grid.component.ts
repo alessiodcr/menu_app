@@ -6,7 +6,8 @@ import { DataService } from '../../services/data.service';
 import { CartService } from '../../services/cart.service';
 import { allergeneImg } from '../../../assets/utils';
 import { CopertoService } from '../../services/coperto.service';
-
+import { PagesService } from '../../services/pages.service';
+import { Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-grid',
@@ -22,9 +23,10 @@ export class GridComponent {
     //includo tutti i services che mi servono e anche l'oggetto Router 
     private productService: ProductsService, //servizio prodotti
     private data: DataService, // servizio filtri
-    private cartService: CartService, // servizio carrello
+    //private cartService: CartService,  servizio carrello
     private router:Router, //classe router
-    private copertoService: CopertoService
+    private pageService: PagesService,
+    private renderer: Renderer2
   ) {
     //al cambio di route eseguo il blocco di codice dentro l'if
     router.events.forEach((event) => {
@@ -39,6 +41,25 @@ export class GridComponent {
           //inizialmente assegno a fProducts il valore di products dato che inizialmente non sarà selezionato nessun filtro
           this.fProducts = JSON.parse(JSON.stringify(this.products));
 
+          this.pageService.getPages().subscribe(res=>{
+            this.pages = res.pages
+          })
+          
+          
+          if(this.pages.indexOf(id) - 1 >= 0){
+            let prevProductId:string = this.pages[this.pages.indexOf(id) - 1]
+            this.productService.getProducts(`http://localhost:3000/${prevProductId}`).subscribe(res=>{
+              this.prevProduct = res.items
+              console.log(res.items)
+            })
+          } 
+          if(this.pages.indexOf(id) + 1 <= this.pages.length){
+            let nextProductId:string = this.pages[this.pages.indexOf(id) + 1]
+            this.productService.getProducts(`http://localhost:3000/${nextProductId}`).subscribe(res=>{
+              this.nextProduct = res.items
+              console.log(res.items)
+            })
+          } 
 
           
 
@@ -125,13 +146,14 @@ export class GridComponent {
     
   }
 
-
   allergeneImg = allergeneImg
   //cart: Product[] = []; // array dei prodotti nel carrello
 
 
   products: Product[] = []; //array dei prodotti standard
-
+  prevProduct: Product[] = []
+  nextProduct: Product[] = []
+  pages: string[] = []
   
 
   filters:string[] = []; //array dei filtri selezionati
@@ -158,12 +180,33 @@ export class GridComponent {
   ngOnInit(){
     //quando il componente viene renderizzato per la prima volta 
     const id = this.router.url.slice(6)
-    try{this.productService.getProducts(`http://localhost:3000/${id}`).subscribe((response) =>{
+    try{
+      this.productService.getProducts(`http://localhost:3000/${id}`).subscribe((response) =>{
       this.products = response.items;
       this.products.forEach((product) => { product.quantita = 0})
       this.fProducts = JSON.parse(JSON.stringify(this.products));
     //console.log(this.fProducts)
     })
+    this.pageService.getPages().subscribe(res=>{
+      this.pages = res.pages
+    })
+    
+    
+    if(this.pages.indexOf(id) - 1 >= 0){
+      let prevProductId:string = this.pages[this.pages.indexOf(id) - 1]
+      this.productService.getProducts(`http://localhost:3000/${prevProductId}`).subscribe(res=>{
+        this.prevProduct = res.items
+        console.log(res.items)
+      })
+    } 
+    if(this.pages.indexOf(id) + 1 <= this.pages.length){
+      let nextProductId:string = this.pages[this.pages.indexOf(id) + 1]
+      this.productService.getProducts(`http://localhost:3000/${nextProductId}`).subscribe(res=>{
+        this.nextProduct = res.items
+        console.log(res.items)
+      })
+    } 
+    
 
     
     

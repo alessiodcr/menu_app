@@ -12,17 +12,17 @@ export class PagesService {
     private http: HttpClient
   ) { }
 
-  getPages = (url: string): Observable<Pages> =>{
-    return this.apiService.get(url, {
+  getPages = (): Observable<Pages> =>{
+    return this.apiService.get('http://localhost:3000/pages', {
       responseType: 'json',
     })
   }
 
-  postPage = (url:string, route: string): Observable<object> =>{
-    return this.http.post(url, {name: route});
+  postPage = ( route: string): Observable<object> =>{
+    return this.http.post('http://localhost:3000/pages', {name: route});
   }
-  deletePage = (url:string, route:string): Observable<object> =>{
-    return this.http.delete(url, {
+  deletePage = (route:string): Observable<object> =>{
+    return this.http.delete('http://localhost:3000/pages', {
       body: {name: route}
     })
   }

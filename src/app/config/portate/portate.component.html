@@ -1,0 +1,24 @@
+<div id="portateComponent">
+    <ul id="portate">
+        @for (page of pages; track $index) {
+            <li class="portata" id="{{page}}">
+                <span class="portataName">{{page}}</span> 
+                <button (click)="deleteRoute(page)" class="deletePage">
+                    <img src="assets/delete.png" alt="" id="deletePageImg">
+                </button>
+            </li>
+        }
+        <li id="newPageButtonDiv">
+            <button (click)="display.toggle()" [style]="display.value" id="newPageButton">
+                <img src="http://localhost:3000/img/add.png" alt="crea nuova portata"  id="newPageImg">
+            </button>
+        </li>
+        <li [style]="display.formValue" id="newPage" class="portata">
+            <button (click)="display.toggle()" id="newPageAnnulla">ANNULLA</button>
+            <form (submit)="handlePost()" [formGroup]="newPage" id="newPageForm">
+                <input type="text" formControlName="newPage">
+                <button type="submit" id="newPage">crea</button>
+            </form>
+        </li>
+    </ul>
+</div>

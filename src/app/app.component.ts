@@ -27,9 +27,10 @@ export class AppComponent {
       document.documentElement.style.setProperty('--primario', res.primario)
       document.documentElement.style.setProperty('--secondario', res.secondario)
       document.documentElement.style.setProperty('--terziario', res.terziario)
-      document.documentElement.style.setProperty('--piccoli', res.piccoli)
-      document.documentElement.style.setProperty('--grandi', res.grandi)
-      document.documentElement.style.setProperty('--grandi2', res.grandi2)
+      document.documentElement.style.setProperty('--piccoli', res.piccoli + 'px')
+      document.documentElement.style.setProperty('--grandi', res.grandi+ 'px')
+      document.documentElement.style.setProperty('--grandi2', res.grandi2 + 'px')
+      console.log()
       //document.documentElement.style.setProperty('--font1', res.font1 )
       //document.documentElement.style.setProperty('--font2', res.font2)
       if(res.immagine){
@@ -39,5 +40,7 @@ export class AppComponent {
       }
       
     })
+
+    
   }
 }

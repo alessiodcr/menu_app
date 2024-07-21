@@ -21,6 +21,7 @@ export class OptionsComponent {
       this.optionsForm.controls.terziario.setValue(res.terziario)
       this.optionsForm.controls.immagine.setValue(res.immagine)
       this.optionsForm.controls.grandi.setValue(res.grandi)
+      this.optionsForm.controls.grandi2.setValue(res.grandi2)
       this.optionsForm.controls.piccoli.setValue(res.piccoli)
       this.optionsForm.controls.font1.setValue(res.font1)
       this.optionsForm.controls.font2.setValue(res.font2)
@@ -79,7 +80,10 @@ export class OptionsComponent {
     const filename:string = event.target.id 
     const file = event.target.files[0]
     this.imgForm.get(`${filename}`)?.setValue(file)
-    this.publicUpload.uploadImg(file, filename).subscribe(res=>{},err=>{console.log(err)})
+    if(file){
+      this.publicUpload.uploadImg(file, filename)?.subscribe(res=>{},err=>{console.log(err)})
+    }
+    
   }
 
 

@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { account } from '../../../types';
 import { PendingService } from '../../services/pending.service';
 import { UsersService } from '../../services/users.service';
+import { SuspensionService } from '../../services/suspension.service';
 
 @Component({
   selector: 'app-accessi',
@@ -15,7 +16,8 @@ export class AccessiComponent {
   constructor(
     private authService: AuthService,
     private pendingService: PendingService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private suspensionService: SuspensionService
   ){}
   pendings: account[] = []
   users: account[] = []
@@ -43,5 +45,21 @@ export class AccessiComponent {
     this.usersService.removeAccount(account).subscribe(res =>{
       console.log('cancellato' + res)
     })
+  }
+
+
+
+
+
+  toggleSuspension(account: account){
+    if(account.status == 'on'){
+      this.suspensionService.suspend(account).subscribe(res=>{
+        console.log(res)
+      })
+    }else if(account.status == 'suspended'){
+      this.suspensionService.riabilita(account).subscribe(res=>{
+        
+      })
+    }
   }
 }

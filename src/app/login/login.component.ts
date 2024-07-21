@@ -26,7 +26,7 @@ export class LoginComponent {
     handleSubmit(){
       this.authService.login(this.loginForm.value.email ?? '', this.loginForm.value.password ?? '').subscribe(res=>{
         localStorage.setItem('user', JSON.stringify(res))
-        this.router.navigate(['config/menu/allergeni'])
+        this.router.navigate(['config/options'])
       }, err =>{
         this.errorMsg = err.error
       }

@@ -19,7 +19,7 @@ export class ConfigGridComponent {
     nome: new FormControl(''),
     ingredienti: new FormControl(''),
     prezzo: new FormControl(''),
-    image: new FormControl(),
+    image: new FormControl(null),
     cereali: new FormControl(false),
     crostacei: new FormControl(false),
     uova: new FormControl(false),
@@ -129,10 +129,10 @@ handlePost(){
     ingredienti: this.newProductForm.value.ingredienti ?? '',
     prezzo: '€' + this.newProductForm.value.prezzo ?? '',
     quantita: 0,
-    img: `http://localhost:3000/img/${this.newProductForm.value.nome + this.newProductForm.value.image.name.slice(this.newProductForm.value.image.name.indexOf('.'))}` ,
+    img: `http://localhost:3000/img/${this.newProductForm.value.nome?.replace(/\s/g, "") + (this.newProductForm.value.image as any)?.name.slice((this.newProductForm.value.image as any)?.name.indexOf('.'))}` ,
     allergeni:[]
   }
-  this.uploadImg.uploadImg(this.newProductForm.value.image, product.nome).subscribe(res=>{},err=>{
+  this.uploadImg.uploadImg(this.newProductForm.value.image ?? null , product.nome.replace(/\s/g, ""))?.subscribe(res=>{},err=>{
     console.log(err)
   })
   this.allergeni.forEach(allergene =>{
@@ -205,7 +205,7 @@ editProductForm = new FormGroup({
   nome: new FormControl(),
   ingredienti: new FormControl(),
   prezzo: new FormControl(),
-  img: new FormControl(),
+  img: new FormControl(null),
   cereali: new FormControl(),
   crostacei: new FormControl(),
   uova: new FormControl(),
@@ -239,14 +239,19 @@ editProductForm = new FormGroup({
       ingredienti: this.editProductForm.value.ingredienti,
       prezzo:   this.editProductForm.value.prezzo,
       quantita: 0,
-      img: `http://localhost:3000/img/${this.editProductForm.value.img.name}` ?? prevProduct.img,
+      img: '',
       allergeni:[]
     }
-    this.uploadImg.uploadImg(this.editProductForm.value.img, newProduct.nome).subscribe(res=>{},
-      err=>{
-        console.log(err)
-      }
-    )
+    if(this.editProductForm.value.img){
+      newProduct.img =`http://localhost:3000/img/${this.editProductForm.value.nome?.replace(/\s/g, "") + (this.editProductForm.value.img as any)?.name.slice((this.editProductForm.value.img as any)?.name.indexOf('.'))}`
+      this.uploadImg.uploadImg(this.editProductForm.value.img ?? null, newProduct.nome.replace(/\s/g, ""))?.subscribe(res=>{},
+        err=>{
+          console.log(err)
+        }
+      )
+    }else{
+      newProduct.img = prevProduct.img
+    }
     this.allergeni.forEach(allergene =>{
       if(this.editProductForm.value[allergene as keyof typeof this.editProductForm.value]){
         newProduct.allergeni.push(allergene)
@@ -258,6 +263,7 @@ editProductForm = new FormGroup({
       console.log('modificato')
     })
     this.editsetFalse()
+    console.log(newProduct.nome)
   }
   
 }

@@ -18,7 +18,7 @@ constructor(
 ){}
   pages: string[] = []
   ngOnInit(){
-    this.pageService.getPages(`http://localhost:3000/pages`).subscribe(data =>{
+    this.pageService.getPages().subscribe(data =>{
       this.pages = data.pages
     })
   }

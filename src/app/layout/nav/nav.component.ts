@@ -4,6 +4,7 @@ import { PagesService } from '../../services/pages.service';
 import { pageRoute } from '../../../assets/utils';
 import { privateDecrypt } from 'node:crypto';
 import { CopertoService } from '../../services/coperto.service';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-nav',
   standalone: true,
@@ -15,18 +16,25 @@ export class NavComponent {
   constructor(
     private pageService: PagesService,
     private router: Router,
-    private copertoService:CopertoService
+    private copertoService:CopertoService,
+    private authService: AuthService
   ){
     
   }
+
+
+  isLoggedIn: boolean = false
   coperto:number = 0
   pages: string[] = [];
   ngOnInit(){
-    this.pageService.getPages(`http://localhost:3000/pages`).subscribe(data =>{
+    this.pageService.getPages().subscribe(data =>{
       this.pages = data.pages
     })
-    this.copertoService.getCoperto(`http://localhost:3000/coperto`).subscribe(data=>{
+    this.copertoService.getCoperto().subscribe(data=>{
       this.coperto  = data.coperto
+    })
+    this.authService.status().subscribe(res=>{
+      this.isLoggedIn = res
     })
   }
   pageRoute = pageRoute

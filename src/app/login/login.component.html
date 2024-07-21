@@ -1,16 +1,20 @@
-<h1>Login</h1>
-<form [formGroup]="loginForm" (submit)="handleSubmit()" id="loginForm">
-    <input type="email" formControlName="email" class="inputLogin" placeholder="email">
-    @if (!loginForm.controls['email'].valid && loginForm.controls['email'].touched) {
-        <h3>email invalida</h3>
-    }
-    
-    <input type="password" formControlName="password" class="inputLogin" placeholder="password">
-    @if (!loginForm.controls['password'].valid && loginForm.controls['password'].touched) {
-        <h3>password invalida</h3>
-    }
-    
-    <h3>{{errorMsg}}</h3>
-    <button type="submit">invia</button>
-</form>
-<a [routerLink]="['..','sign-in']">per registrarti clicca qui</a>
+<div id="loginDiv">
+    <div id="login">
+        <h1 id="loginTitle">Login</h1>
+        <form [formGroup]="loginForm" (submit)="handleSubmit()" id="loginForm">
+            <div id="loginEmail">
+                <input type="email" formControlName="email" id="inputEmail" placeholder="email" />
+            </div>
+            <div id="loginPassword">
+                <input type="password" formControlName="password" id="inputPassword" placeholder="password" />
+            </div>
+            
+            @if ((!loginForm.controls['password'].valid || !loginForm.controls['email'].valid) && ( loginForm.controls['password'].touched && loginForm.controls['email'].touched)) {
+                <h3 id="invalid">email o password non valide</h3>
+                }
+            <h3>{{ errorMsg }}</h3>
+            <button type="submit" id="loginSubmit">invia</button>
+        </form>
+        <a [routerLink]="['..', 'sign-in']" id="registerbutton">per registrarti clicca qui</a>
+    </div>
+</div>

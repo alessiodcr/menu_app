@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { account } from '../../../types';
+import { PagesService } from '../../services/pages.service';
 @Component({
   selector: 'app-sidenav',
   standalone: true,
@@ -13,11 +14,18 @@ import { account } from '../../../types';
 export class SidenavComponent {
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private pageService: PagesService
   ){}
   menuClick(){
     this.authService.logout()
-    this.router.navigate(['/menu/allergeni'])
+    this.router.navigate([`/menu/${this.pages[0]}`])
+  }
+  pages: string[] = []
+  ngOnInit(){
+    this.pageService.getPages().subscribe(res=>{
+      this.pages = res.pages
+    })
   }
 
   sideDisplay = {

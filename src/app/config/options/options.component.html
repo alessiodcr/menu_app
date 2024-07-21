@@ -28,7 +28,7 @@
             <span [style]="fontPiccoli()"> esempio</span>
         </div>
         <div id="fontsize3" class="input">
-            <label for="font3P">grandezza caratteri piccoli: {{optionsForm.value.piccoli}}</label>  
+            <label for="font3P">grandezza caratteri piccoli: {{optionsForm.value.grandi2}}</label>  
             <input type="range" id="font3P" step="1" min="20" max="40" formControlName="grandi2">
             <span [style]="fontGrandi2()"> esempio</span>
         </div>
@@ -54,8 +54,8 @@
             }
         </div>
         <div id="optionLogoDiv" class="input">
-            <input type="file" id="optionsLogo" (change)="onImagePicked($event)">
-            <label for="logoRistorante">logo del Ristorante</label>
+            <input type="file" id="Logo" (change)="onImagePicked($event)">
+            <label for="Logo">logo del Ristorante</label>
         </div>
     </form>
 </div>

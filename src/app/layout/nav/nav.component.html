@@ -5,7 +5,12 @@
         </li>
     }
     <li class="span">
-        <a href="http://localhost:4200/login">config</a>
+        @if (!isLoggedIn) {
+            <a href="http://localhost:4200/login">config</a>
+        }@else {
+            <a href="http://localhost:4200/config/menu/{{pages[0]}}">config</a>
+        }
+        
     </li>
 </ul>
 <div id="footer">

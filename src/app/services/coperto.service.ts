@@ -10,8 +10,8 @@ export class CopertoService {
 
   constructor(private apiService: ApiService) { }
 
-  getCoperto = (url: string): Observable<Coperto> =>{
-    return this.apiService.get(url, {
+  getCoperto = (): Observable<Coperto> =>{
+    return this.apiService.get("http://localhost:3000/coperto", {
       responseType: 'json',
     })
   }

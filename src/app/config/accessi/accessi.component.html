@@ -36,6 +36,13 @@
                     <td>{{account.email}}</td>
                     <td>{{account.class}}</td>
                     <td><button class="btn" (click)="removeAccount(account)">rimuovi account</button></td>
+                    <td><button (click)="toggleSuspension(account)">
+                        @if (account.status == "on") {
+                            sospendi
+                        }@else if(account.status == "suspended") {
+                            riabilita
+                        }
+                    </button></td>
                 </tr>
             }
         </tbody>

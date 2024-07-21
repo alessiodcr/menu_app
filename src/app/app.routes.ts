@@ -13,6 +13,7 @@ import { AccessiComponent } from './config/accessi/accessi.component';
 import { superGuard } from './services/super.guard';
 import { HomeComponent } from './home/home.component';
 import { NavigateComponent } from './navigate/navigate.component';
+import { PortateComponent } from './config/portate/portate.component';
 
 export const routes: Routes = [
     {
@@ -55,10 +56,6 @@ export const routes: Routes = [
                 component: MainComponent,
                 children: [
                     {
-                        path: 'allergeni',
-                        component: AllergeniComponent
-                    },
-                    {
                         path: ':id',
                         component: ConfigGridComponent
                     }
@@ -72,6 +69,10 @@ export const routes: Routes = [
                 path: 'accessi',
                 canActivate: [superGuard],
                 component: AccessiComponent
+            },
+            {
+                path:'portate',
+                component: PortateComponent
             }
         ]
     },

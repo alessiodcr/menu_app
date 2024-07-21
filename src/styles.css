@@ -18,13 +18,10 @@
     box-sizing: border-box;
 }
 body{
-    width:95%;
-    margin: 2%;
+    width:100%;
+    margin: 0;
 }
 /*menu lauout*/
-app-layout{
-
-}
 
 
 
@@ -60,12 +57,59 @@ app-layout{
     margin-top: 5%;
     padding-bottom: 20%;
 }   
-#lenguageForm{
-
-} 
 
 /*end home*/
 
+
+/*navigate*/
+#navigate{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#navigateLogoDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#navigateLogo{
+    height: 15em;
+    
+}
+#navigateNav{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.navigatePageDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.navigatePage{
+    border-radius: 50px;
+     padding: 0.1em 0.3em;
+     font-size: var(--grandi2);
+    color: var(--primario);
+    text-transform: uppercase;
+    font-weight: normal;
+    cursor: pointer;
+    text-align: center;
+}
+.navigatePage:hover{
+    border:  solid 3px var(--primario);
+    
+}
+#navigateAllergeni{
+    color: var(--secondario);
+    background-color: var(--primario);
+    font-size: var(--grandi);
+    padding: 0.2em 0.4em;
+    width: 10em;
+    margin-top: 0.2em;
+}
+/*end navigate*/
 
 
 /*navbar*/
@@ -74,6 +118,7 @@ app-layout{
     width: 95%;
     position: fixed;
     top: 0;
+    gap: 2em;
     padding-top: 2%;
     display: inline-flex;
     justify-content: space-around;
@@ -122,20 +167,22 @@ app-layout{
     padding-bottom: 1%;
     overflow-x: scroll;
     width: 40%;
-    gap: 4%;
+    gap: 7%;
+    margin-bottom: 1rem;
 }   
 #pages::-webkit-scrollbar {
     display: none;
   }
 .page{
     position:relative;
-    width:1.5em;
-    height:1.5em;
+    width:1em;
+    aspect-ratio: 1/1;
     background:var(--primario);
     border-radius:50%;
     cursor: pointer;
 }
 .footerActive{
+
     background: var(--primario );
     opacity: 0.5;
 }
@@ -148,18 +195,25 @@ app-layout{
 
 
 /*grid*/
+@media only screen and (max-width: 700px) {
+    #grid{
+        margin: 20% 0;
+    }
+}
 .gridWrapper{
     width: 100%; 
 }
 #grid{
     position: relative;
-    margin-top: 8%;
+    margin: 8% 0;
     width: 100%;
     display: flex;
     justify-content: center;
+    overflow: hidden;
+    right: 0;
 }
 .products{
-    width: 90%;
+    width: 75%;
     display: flex;
     flex-wrap: wrap;
 }
@@ -173,24 +227,25 @@ app-layout{
     overflow: hidden;
     border: 0.4em solid var(--primario);
     border-radius: 50%;
-    display: flex;
-    align-items: center;
+    display: var(--immagine);
+    align-self: center;
     justify-content: center;
     width: fit-content;
     height: fit-content;
     cursor: pointer;
+    height: 100%;
+    margin-right: 5%;
 }
 .productInfoImg{
-    opacity: 0.5;
     background-color: var(--primario);
 }
 .productName{
-    font-size: var(--font1);
+    font-size: var(--grandi);
     text-transform: uppercase;
     font-weight: bold;
 }
 .ingredienti{
-    font-size: var(--font2);
+    font-size: var(--piccoli);
     font-weight:normal;
 }
 .price{
@@ -203,6 +258,16 @@ app-layout{
     width: 80%;
 }
 
+.prevProducts, .nextProducts{
+    position: absolute;
+    width: 80%;
+}
+.prevProducts{
+    right: 100%;
+}
+.nextProducts{
+    left: 100%;
+}
 
 
 /*end grid*/
@@ -221,31 +286,51 @@ app-layout{
     justify-content: center;
     flex-wrap: wrap;
 }
-#productImg{
+#productInfoDiv{
     width: 100%;
-    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: fit-content;
+}
+#productImg{
+    width: 35%;
 }
 #productImgDiv{
-    width: 35%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#productInfoProprietiesDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 #productInfoProprieties{
     width: 35%;
+    box-sizing: border-box;
+    padding: 0.5em;
     background-color: var(--secondario);
 }
 #productInfoName{
-    font-size: var(--font1);
+    font-size: var(--grandi);
     text-transform: uppercase;
 }
 #productInfoIngredienti{
-    font-size: var(--font2);
+    font-size: var(--piccoli);
     font-weight: normal;
 }
 #productInfoPrice{
     font-weight: normal;
-    font-size: var(--font2);
+    font-size: var(--grandi);
 }
 .productInfoAllergeni{
     height: 2em;
+}
+#closeInfo{
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 #closeInfoButton{
     background-color: rgba(255, 255, 255, 1);
@@ -254,5 +339,258 @@ app-layout{
     color: var(--primario);
     font-weight: 300;
     cursor: pointer;
+    position: relative;
+    left: 16%;
 }
 /*end info product*/
+
+
+
+
+/*config products*/
+#configProducts{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px 0;
+    margin-top: 3em;
+    margin-top: 8%;
+}
+.configProduct{
+    display: inline-flex;
+    flex-basis: 75%;
+    justify-content: center;
+}
+.configAllergene{
+    height: 1.5em;
+    width: 1.5em;
+}
+.configImg{
+    width: 100%;
+    height: 100%;
+    border-radius: 1em;
+    display: var(--immagine);
+}
+.configImgDiv{
+    height: 7em;
+    width: 7em;
+}
+.configDes{
+    width: 50%;
+    margin: 0 1em;
+}
+.configName{
+    font-size: var(--grandi);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.configIngredienti{
+    font-size: var(--piccoli);
+    font-weight: normal;
+}
+.configPrice{
+    font-weight: normal;
+    font-size: var(--grandi);
+}
+.configPriceDiv{
+    width: 4em;
+}
+.editButton, .deleteButton{
+    background-color: var(--primario);
+    border-radius: 1em;
+    height: 3em;
+    width: 3em;
+    cursor: pointer;
+    border: none;
+    
+}
+.configButtons{
+    display: flex;
+    align-items: center;
+    justify-self: flex-end;
+    justify-content: space-between;
+    position: relative;
+    right: 0;
+    gap: 0.3em;
+}
+/*end config products*/
+
+
+/*newProduct*/
+#addProductDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#addProduct{
+    background-color: var(--primario);
+    color: var(--secondario);
+    font-weight: bolder;
+    font-size: var(--grandi);
+    border-radius: 1em;
+    cursor: pointer;
+    border: none;
+    width: 2em;
+}
+#newProduct{
+    display: inline-flex;
+}
+#empty{
+    display: flex;
+    flex-basis: 80%;
+    flex-wrap: wrap;
+}
+#newDes{
+    display: block;
+}
+#newSubmit{
+    color: var(--secondario);
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: var(--primario);
+    border-radius: 1em;
+    cursor: pointer;
+    border: none;
+}
+#newProductImgDiv{
+    display: var(--immagine);
+}
+#newAllergeni{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+}
+#annullaNewProduct{
+    border: none;
+    color: var(--secondario);
+    background-color: var(--primario);  
+    border-radius: 0.3em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#annullaNewProductDiv{
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+/*end new product*/
+
+
+
+
+/* modifica portate*/
+#portateComponent{
+    display: flex;
+    justify-content: center;
+}
+#portate{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    color: var(--primario);
+    font-size: var(--grandi2);
+    text-transform: uppercase;
+    align-content: space-between;
+    gap: 0.5em;
+}
+.portata{
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+}
+.portataName{
+    width: 25%;
+    font-weight: normal;
+}
+.deletePage{
+    border: none;
+    background-color: var(--primario);
+    border-radius: 0.8em;
+    height: var(--grandi);
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+#newPageButtonDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+#newPageButton{
+    background-color: var(--primario);
+    color: var(--secondario);
+    border: none;
+    border-radius: 0.3em;
+    font-size: x-large;
+    cursor: pointer;
+    aspect-ratio: 1/1;
+    
+}
+#newPageImg{
+    padding: 0;
+    width: 2em;
+    aspect-ratio: 1/1;
+}
+
+/*end modifica portate*/
+
+
+
+/*login*/
+#loginDiv{
+    margin: 0;
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+}
+#login{
+    border-radius: 1em;
+    border: 2px solid lightsteelblue;
+    border-bottom: 4px solid lightslategray ;
+    display: flex;
+    padding: 1em;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 40%;
+}
+#loginTitle{
+    width: 100%;
+    margin-bottom: 1em;
+    text-align: center;
+}
+#registerbutton{
+    width: 100%;
+    text-align: center;
+    margin-top: 1em;
+}
+#loginForm{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-between;
+    gap:0.2em;
+}
+#loginEmail, #loginPassword{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#inputEmail, #inputPassword{
+    border-radius: 50px;
+    border: none;
+    border-bottom: 2px solid lightslategray ;
+    padding: 0.5em;
+}
+#invalid{
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-weight: normal;
+    font-size: var(--piccoli);
+}
+/*end login*/
