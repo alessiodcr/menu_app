@@ -24,9 +24,12 @@ export interface Options{
         includeHeaders?: string[];
     } | boolean;
 }
+export type Portate = Record<string, Product[]>;
+
 export interface Products {
-    items: Product[];
+    items: Product[]
 }
+
 
 export interface display{
     value: string;

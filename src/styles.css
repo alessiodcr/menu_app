@@ -9,16 +9,17 @@
     --grandi2: 40px;
     --font1: 'Montserrat', sans-serif;
     --font2: 'Montserrat', sans-serif;
+    --pages: ;
 }
 *{
-    font-family: var(--font1);
+    font-family: 'Montserrat';
     flex-shrink: 1;
     margin: 0;
     max-width: 100%;
     box-sizing: border-box;
 }
 body{
-    width:100%;
+    width: 100%;
     margin: 0;
 }
 /*menu lauout*/
@@ -123,7 +124,7 @@ body{
     display: inline-flex;
     justify-content: space-around;
     list-style: none;
-    z-index: 1;
+    z-index: 3;
     overflow-x: scroll;
 }
 #nav::-webkit-scrollbar {
@@ -152,7 +153,7 @@ body{
 
 /*footer*/
  #footer{
-    z-index: 1;
+    z-index: 3;
     position: fixed;
     bottom: 0;
     background-color: var(--secondario);
@@ -200,22 +201,33 @@ body{
         margin: 20% 0;
     }
 }
-.gridWrapper{
-    width: 100%; 
+.girdWrapper{
+    width: 100%;
 }
 #grid{
-    position: relative;
+    position: absolute;
     margin: 8% 0;
+    display: flex;
+    left: 0%;
+    overflow: hidden;
     width: 100%;
+}
+#portateDiv{
+    display: inline-flex;
+    overflow-x:visible;
+    width: 100%;
+}
+.productsDiv{
+    min-width: 100%;
     display: flex;
     justify-content: center;
-    overflow: hidden;
-    right: 0;
 }
 .products{
     width: 75%;
-    display: flex;
+    display: none;
     flex-wrap: wrap;
+    align-content: flex-start;
+    margin-bottom: 8%;
 }
 .product{
     display: inline-flex;
@@ -235,6 +247,7 @@ body{
     cursor: pointer;
     height: 100%;
     margin-right: 5%;
+    z-index: 2;
 }
 .productInfoImg{
     background-color: var(--primario);
@@ -275,7 +288,7 @@ body{
 
 /*info product*/
 #productInfo{
-    z-index: 2;
+    z-index: 4;
     position: fixed;
     top: 0;
     width: 100%;

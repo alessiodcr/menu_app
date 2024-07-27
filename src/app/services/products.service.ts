@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
-import { Product, Products } from '../../types';
+import { Portate, Product, Products } from '../../types';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -17,6 +17,10 @@ export class ProductsService {
     return this.apiService.get(url, {
       responseType: 'json',
     })
+  }
+
+  getPortate = (): Observable<Portate> =>{
+    return this.http.get<Portate>('http://localhost:3000/portate')
   }
 
   addProduct(product: Product, url:string){

@@ -7,6 +7,7 @@ import { GridComponent } from './layout/grid/grid.component';
 import { AllergeniComponent } from './layout/allergeni/allergeni.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { OptionsService } from './services/options.service';
+import { PagesService } from './services/pages.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -20,9 +21,13 @@ import { OptionsService } from './services/options.service';
 export class AppComponent {
   title =  "menu_app";
   constructor(
-    private optionsService: OptionsService
+    private optionsService: OptionsService,
+    private pageService: PagesService
   ){}
   ngOnInit(){
+    this.pageService.getPages().subscribe(res=>{
+      document.documentElement.style.setProperty('--pages', String(res.pages.length + 1))
+    })
     this.optionsService.getOptions().subscribe(res =>{
       document.documentElement.style.setProperty('--primario', res.primario)
       document.documentElement.style.setProperty('--secondario', res.secondario)
@@ -30,7 +35,6 @@ export class AppComponent {
       document.documentElement.style.setProperty('--piccoli', res.piccoli + 'px')
       document.documentElement.style.setProperty('--grandi', res.grandi+ 'px')
       document.documentElement.style.setProperty('--grandi2', res.grandi2 + 'px')
-      console.log()
       //document.documentElement.style.setProperty('--font1', res.font1 )
       //document.documentElement.style.setProperty('--font2', res.font2)
       if(res.immagine){

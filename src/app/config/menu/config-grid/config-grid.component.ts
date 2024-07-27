@@ -95,7 +95,7 @@ export class ConfigGridComponent {
   ngOnInit(){
     const id = this.router.url.slice(13)
     this.productService.getProducts(`http://localhost:3000/${id}`).subscribe(data =>{
-      this.products = data.items
+     this.products = data.items
       console.log('fatto')
     })
   }
