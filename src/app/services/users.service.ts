@@ -13,13 +13,16 @@ export class UsersService {
   ) { }
 
   getUsers(): Observable<accounts>{
-    return this.http.get<accounts>('http://localhost:3000/users')
+    return this.http.get<accounts>('http://localhost:3000/users', {
+      withCredentials: true
+    })
   }
   removeAccount(account: account){
     return  this.http.delete<account>('http://localhost:3000/users', {
       body: {
         account: account
-      }
+      },
+      withCredentials: true
     })
   }
 }

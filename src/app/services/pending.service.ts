@@ -13,16 +13,21 @@ export class PendingService {
   ) { }
 
   getPending(): Observable<accounts>{
-    return this.http.get<accounts>('http://localhost:3000/pending')
+    return this.http.get<accounts>('http://localhost:3000/pending', {
+      withCredentials: true
+    })
   }
   approve(account: account): Observable<account>{
-    return this.http.post<account>('http://localhost:3000/pending', account)
+    return this.http.post<account>('http://localhost:3000/pending', account, {
+      withCredentials: true
+    })
   }
   reject(account: account): Observable<account>{
     return this.http.delete<account>('http://localhost:3000/pending', {
       body: {
         account: account
-      }
+      },
+      withCredentials: true
     })
   }
 }

@@ -4,20 +4,22 @@ import { account } from '../../../types';
 import { PendingService } from '../../services/pending.service';
 import { UsersService } from '../../services/users.service';
 import { SuspensionService } from '../../services/suspension.service';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { SwitchService } from '../../services/switch.service';
 
 @Component({
   selector: 'app-accessi',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './accessi.component.html',
   styleUrl: './accessi.component.css'
 })
 export class AccessiComponent {
   constructor(
-    private authService: AuthService,
     private pendingService: PendingService,
     private usersService: UsersService,
-    private suspensionService: SuspensionService
+    private suspensionService: SuspensionService,
+    private switchService: SwitchService
   ){}
   pendings: account[] = []
   users: account[] = []
@@ -62,4 +64,11 @@ export class AccessiComponent {
       })
     }
   }
+
+  switch(){
+    this.switchService.switch()
+  }
+
+
+
 }

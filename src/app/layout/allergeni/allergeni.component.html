@@ -1,1 +1,14 @@
-<img id="allergeni" src="/assets/allergeni.png" alt="allergeni">
+<div id="allergeniComponent">
+    <h1 id="ALLERGENI" class="text1">ALLERGENI</h1>
+    <div id="allergeniImgs">
+        @for (allergene of allergeni; track $index) {
+            <img src="{{env.server + 'img/' + allergene + '.png'}}" id="{{allergene}}Img" class="allergeneImg">
+        }
+    </div>
+    <div id="prevAllergeniDiv">
+        <button [routerLink]="['..', 'navigate']" id="prevAllergeni">
+            <img src="{{env.server + 'img/' + 'allergeniArrow.png'}}" alt="" id="prevAllergeniImg">
+        </button>
+    </div>
+    
+</div>

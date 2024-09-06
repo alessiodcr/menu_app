@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { accounts } from '../../types';
+//import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,9 @@ export class AuthService {
   private environment = {
     API_EndPoint_aut: ''
   }
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    //private cookieService: CookieService
+  ) {}
 
   // Toogle Loggedin
   toggleLogin(state: boolean): void {
@@ -41,7 +44,8 @@ export class AuthService {
 
   class(){
     const localData: any = localStorage.getItem('user')
-    if (!localData) {
+    //const token = this.cookieService.get('jwt');
+    if (!localData /*|| token*/  ) {
       this.isLoggedIn.next(false);
        console.log('User not lgged in !!');
     } else {
@@ -69,44 +73,24 @@ export class AuthService {
     return this.http.post('http://localhost:3000/login', {
       email: email,
       password: password,
-    });
+    },
+  {
+    withCredentials: true
+  });
 
 
-  }
-
-  // User Info
-  user() {
-    const user: any = localStorage.getItem('user');
-    const userObj = JSON.parse(user);
-
-    const token = userObj.token;
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    
-    return this.http.get(this.environment.API_EndPoint_aut+'user', {
-      headers: headers,
-    });
   }
 
   // Logout
   logout(){
     localStorage.removeItem('user')
   }
-  /*logout(allDevice: boolean){
-    const user: any = localStorage.getItem('user');
-    const userObj = JSON.parse(user);
 
-    const token = userObj.token;
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.post(this.environment.API_EndPoint_aut+'logout', {allDevice:allDevice}, {headers:headers});
-  }*/
 
   // Register
-  register(email:string, password:string, password_confirmation:string){
+  register(nome: string,email:string, password:string, password_confirmation:string){
     const data={
+      nome: nome,
       email:email,
       password:password,
       confirm:password_confirmation,

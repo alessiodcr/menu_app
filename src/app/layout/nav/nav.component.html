@@ -1,20 +1,20 @@
 <ul id="nav">
     @for (page of pages; track $index) {
-        <li class="{{page}} span" [routerLink]="[pageRoute($index, pages)]" routerLinkActive="active">
+        <li class="{{page}} span text2" [routerLink]="[pageRoute($index, pages)]" routerLinkActive="active">
             {{page}}
         </li>
     }
     <li class="span">
         @if (!isLoggedIn) {
-            <a href="http://localhost:4200/login">config</a>
+            <a href="http://localhost:4200/login" class="text2">config</a>
         }@else {
-            <a href="http://localhost:4200/config/menu/{{pages[0]}}">config</a>
+            <a href="http://localhost:4200/config/menu/{{pages[0]}}" class="text2">config</a>
         }
         
     </li>
 </ul>
 <div id="footer">
-    <h3 id="coperto">coperto: €{{coperto}}</h3>
+    <h3 id="coperto" class="text2">coperto: €{{coperto}}</h3>
     <div id="pages">
         @for (page of pages; track $index) {
             <div class="page" routerLink="{{page}}" routerLinkActive="footerActive"></div>

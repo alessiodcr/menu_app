@@ -24,12 +24,15 @@ export class ProductsService {
   }
 
   addProduct(product: Product, url:string){
-    return this.http.post(url, product)
+    return this.http.post(url, product, {
+      withCredentials: true
+    })
   }
 
   deleteProduct(product: Product, url:string){
     return this.http.delete(url, {
-      body: product
+      body: product,
+      withCredentials: true
     })
   }
 
@@ -37,6 +40,8 @@ export class ProductsService {
     return this.http.put(url, {
       prev: prevProduct,
       new: newProduct
+    }, {
+      withCredentials: true
     })
   }
 }

@@ -19,11 +19,14 @@ export class PagesService {
   }
 
   postPage = ( route: string): Observable<object> =>{
-    return this.http.post('http://localhost:3000/pages', {name: route});
+    return this.http.post('http://localhost:3000/pages', {name: route}, {
+      withCredentials: true
+    });
   }
   deletePage = (route:string): Observable<object> =>{
     return this.http.delete('http://localhost:3000/pages', {
-      body: {name: route}
+      body: {name: route},
+      withCredentials:true
     })
   }
 }

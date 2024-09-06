@@ -14,24 +14,23 @@ import { superGuard } from './services/super.guard';
 import { HomeComponent } from './home/home.component';
 import { NavigateComponent } from './navigate/navigate.component';
 import { PortateComponent } from './config/portate/portate.component';
+import { menuGuard } from './services/menu.guard';
+import { MenuNonDisponibileComponent } from './menu-non-disponibile/menu-non-disponibile.component';
 
 export const routes: Routes = [
     {
-        path:"",
-        pathMatch:'full',
-        redirectTo:"/home"
-    },
-    {
+        canActivate: [menuGuard],
         path:"home",
         component: HomeComponent,
         outlet: "primary"
     },
-    {
+    {canActivate: [menuGuard],
         path: 'navigate',
         component: NavigateComponent,
         outlet: 'primary'
     },
     {
+        canActivate: [menuGuard],
         path:"menu",
         component:LayoutComponent,
         outlet:"primary",
@@ -83,6 +82,10 @@ export const routes: Routes = [
     {
         path: 'sign-in',
         component: SignInComponent
+    },
+    {
+        path: 'menu-non-disponibile',
+        component: MenuNonDisponibileComponent
     },
     {
         path: '**',

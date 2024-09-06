@@ -12,9 +12,13 @@ export class SuspensionService {
   ) { }
 
   suspend(account: account){
-    return this.http.post(ENV.server + 'suspend', account)
+    return this.http.post(ENV.server + 'suspend', account, {
+      withCredentials: true
+    })
   }
   riabilita(account:account){
-    return this.http.post(ENV.server + 'riabilita', account)
+    return this.http.post(ENV.server + 'riabilita', account, {
+      withCredentials: true
+    })
   }
 }

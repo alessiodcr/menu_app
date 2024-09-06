@@ -1,24 +1,26 @@
-<div id="signInForm">
-    <h1>registrati</h1>
-    <form [formGroup]="registerForm" (submit)="handleSubmit()">
-        <div id="email">
-            <input type="email" placeholder="email" formControlName="email">
-        </div>
-        @if (!registerForm.controls['email'].valid && registerForm.controls['email'].touched) {
-            <h3>email non valida</h3>
-        }
-        <div id="password">
-            <input type="password" placeholder="password" formControlName="password">
-        </div>
-        @if (!registerForm.controls['password'].valid && registerForm.controls['password'].touched) {
-            <h3>password non valida</h3>
-        }
-        <div id="confirm">
-            <input type="password" placeholder="conferma password" formControlName="confirm">
-        </div>
-        @if (!registerForm.controls['confirm'].valid && registerForm.controls['confirm'].touched) {
-            <h3>password o conferma password diverse</h3>
-        }
-        <button type="submit" class="btn">registrati</button>
-    </form>
+<div id="signInDiv">
+        
+        <form [formGroup]="registerForm" (submit)="handleSubmit()" id="signInForm">
+            <h1 id="registrati">registrati</h1>
+            <div id="signInNome">
+                <input type="text" name="" id="" placeholder="nome" formControlName="nome">
+            </div>
+            <div id="signInEmail">
+                <input type="email" placeholder="email" formControlName="email">
+            </div>
+            
+            <div id="signInPassword">
+                <input type="password" placeholder="password" formControlName="password">
+            </div>
+            <div id="passwordConfirm">
+                <input type="password" placeholder="conferma password" formControlName="confirm">
+            </div>
+            @if (!registerForm.controls['email'].valid && registerForm.controls['email'].touched) {
+                <h3 id="emailNonValida">email non valida</h3>
+            }
+            @if (!registerForm.controls['confirm'].valid && registerForm.controls['confirm'].touched) {
+                <h3 id="passwordNonValida">password o conferma password non valide oppure diverse</h3>
+            }
+            <button type="submit" class="btn" id="signInSubmit">registrati</button>
+        </form>
 </div>

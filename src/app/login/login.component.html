@@ -4,16 +4,18 @@
         <form [formGroup]="loginForm" (submit)="handleSubmit()" id="loginForm">
             <div id="loginEmail">
                 <input type="email" formControlName="email" id="inputEmail" placeholder="email" />
+                <img src="{{env.server + '/img/mail.png'}}" alt="" id="loginEmailImg">
             </div>
             <div id="loginPassword">
                 <input type="password" formControlName="password" id="inputPassword" placeholder="password" />
+                <img src="{{env.server + '/img/password.png'}}" id="loginPasswordImg">
             </div>
             
             @if ((!loginForm.controls['password'].valid || !loginForm.controls['email'].valid) && ( loginForm.controls['password'].touched && loginForm.controls['email'].touched)) {
                 <h3 id="invalid">email o password non valide</h3>
                 }
             <h3>{{ errorMsg }}</h3>
-            <button type="submit" id="loginSubmit">invia</button>
+            <button type="submit" id="loginSubmit">Accedi</button>
         </form>
         <a [routerLink]="['..', 'sign-in']" id="registerbutton">per registrarti clicca qui</a>
     </div>

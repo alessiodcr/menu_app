@@ -1,13 +1,17 @@
 <div id="scroll" (touchstart)="touchStart($event)" (touchend)="touchEnd($event)" (mousedown)="mouseStart($event)" (mouseup)="mouseUp($event)">
 </div>
+
 <div id="grid" >
 
   <div id="portateDiv"  >
     @for (portata of pages; track $index) {
     <div class="productsDiv" >
     <div class="products" id="{{portata}}">
+      @if (headers[portata]) {
+        <h1 class="portataHeader">{{headers[portata]}}</h1>
+      }
       @if (products[portata].length == 0) {
-      <h1 id="nessunProdotto">Non ci sono prodotti disponibili</h1>
+      <h1 id="nessunProdotto" class="text1">Non ci sono prodotti disponibili</h1>
       } @for (product of products[portata]; track $index) {
       <div class="product">
         <div class="infoButton" (click)="display.setTrue(product)">
@@ -18,8 +22,8 @@
           />
         </div>
         <div class="productProprieties">
-          <h3 class="productName">{{ product.nome }}</h3>
-          <h3 class="ingredienti">{{ product.ingredienti }}</h3>
+          <h3 class="productName text2">{{ product.nome }}</h3>
+          <h3 class="ingredienti text3" >{{ product.ingredienti }}</h3>
            @for (allergene of product.allergeni; track $index) {
           <img
             src="{{ allergeneImg(allergene) }}"
@@ -29,7 +33,7 @@
           }
         </div>
         <div class="priceDiv">
-          <h3 class="price">{{ product.prezzo }}</h3>
+          <h3 class="price text2">{{ product.prezzo }}</h3>
         </div>
       </div>
       }
@@ -47,9 +51,9 @@
       </div>
       <div id="productInfoProprietiesDiv">
         <div id="productInfoProprieties">
-          <h1 id="productInfoName">{{ display.product?.nome }}</h1>
-          <h1 id="productInfoPrice">{{ display.product?.prezzo }}</h1>
-          <h2 id="productInfoIngredienti">
+          <h1 id="productInfoName" class="text2">{{ display.product?.nome }}</h1>
+          <h1 id="productInfoPrice" class="text2">{{ display.product?.prezzo }}</h1>
+          <h2 id="productInfoIngredienti" class="text3">
             {{ display.product?.ingredienti }}
           </h2>
           @for (allergene of display.product?.allergeni; track $index) {
@@ -63,7 +67,7 @@
       </div>
 
       <div id="closeInfo">
-        <button id="closeInfoButton" (click)="display.setFalse()">X</button>
+        <button id="closeInfoButton" (click)="display.setFalse()" class="text3">X</button>
       </div>
     </div>
   </div>

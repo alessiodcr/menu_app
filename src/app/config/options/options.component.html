@@ -17,6 +17,10 @@
             <label for="immagine">mostra immagine dei prodotti</label>
             <input type="checkbox" id="immagine" formControlName="immagine">     
         </div>
+        <div id="copertoOption" class="input">
+            <label for="copertoOption">mostra coperto/servizio</label>
+            <input type="checkbox" id="copertoOption" formControlName="coperto">     
+        </div>
         <div id="fontsize1" class="input">
             <label for="fontG">grandezza caratteri grandi: {{optionsForm.value.grandi}}</label>
             <input type="range" id="fontG" step="1" min="10" max="24" formControlName="grandi">
@@ -33,17 +37,33 @@
             <span [style]="fontGrandi2()"> esempio</span>
         </div>
         <div id="font1" class="input">
-            <label for="font1">font 1: {{optionsForm.value.font1}}</label>  
-            <input type="range" id="font1" step="1" min="8" max="20" formControlName="font1">
-            <span [style]="font1()"> esempio</span>
+            <label for="font1">primo font</label>
+            <select name="font1" id="font1" formControlName="font1">
+                @for (font of fonts; track $index) {
+                    <option value="{{font}}">{{font}}</option>
+                }
+            </select>
         </div>
         <div id="font2" class="input">
-            <label for="font2">font 1: {{optionsForm.value.font2}}</label>  
-            <input type="" id="font2" step="1" min="8" max="20" formControlName="font2">
-            <span [style]="font2()"> esempio</span>
+            <label for="font2">secondo font</label>
+            <select name="font2" id="font2" formControlName="font2">
+                @for (font of fonts; track $index) {
+                    <option value="{{font}}">{{font}}</option>
+                }
+            </select>
+        </div>
+        <div id="font3" class="input">
+            <label for="font3">secondo font</label>
+            <select name="font3" id="font3" formControlName="font3">
+                @for (font of fonts; track $index) {
+                    <option value="{{font}}">{{font}}</option>
+                }
+            </select>
         </div>
         <button type="submit" class="btn">conferma</button>
     </form>
+
+
     <form [formGroup]="imgForm">
         <div id="allergeni">
             @for (allergene of allergeni; track $index) {

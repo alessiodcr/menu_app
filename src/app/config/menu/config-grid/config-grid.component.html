@@ -1,102 +1,136 @@
 <div id="configProducts">
-  @if (products.length == 0) {
-    <h1 id="configNessunProdotto">Ancora non hai aggiunto prodotti</h1>
+  @if (coperto) {
+    <h1 id="configCoperto" [style]="copertoDisplay.value">{{coperto}}</h1>
+    <button [style]="copertoDisplay.value" (click)="copertoDisplay.toggle()">modifica</button>
+    <button [style]="copertoDisplay.value" (click)="deleteCoperto()">elimina</button>
+  }@else {
+    <button (click)="copertoDisplay.toggle()" [style]="copertoDisplay.value">+</button>
   }
-  @for (product of products; track $index) {
-    
-      <div class="configProduct">
-        <div class="configImgDiv">
-          <img  class="configImg" src="{{product.img}}"/>
-        </div>
-        <div class="configDes">
-          <h3 class="configName">{{product.nome}}</h3>
-          
-          @if (product.allergeni.length > 0) {
-            <h3 class="configIngredienti">{{product.ingredienti}}</h3>
-          }@else{
-            <h3 class="configIngredienti" style="margin-top: 2rem;">{{product.ingredienti}}</h3>
-          }
-            @for (allergene of product.allergeni; track $index) {
-              <img src="{{allergeneImg(allergene)}}" alt=" {{product}} contiene {{allergene}}" class="configAllergene">
-            }  
-        </div>
-        <div class="configPriceDiv">
-          <h3 class="configPrice">{{product.prezzo}}</h3>
-        </div>
-        <div class="configButtons">
-          <button class="editButton">
-            <img src="assets/edit.png" alt="modifica" (click)="editsetTrue(product)" class="editImg">
-          </button>
-          <button class="deleteButton" (click)="deleteProduct(product)">
-            <img src="assets/delete.png" alt="cancella" class="deleteImg">
-          </button>
-          
-         </div>
-      </div>
+  <form id="copertoForm" [formGroup]="copertoForm" [style]="copertoDisplay.formValue" (submit)="postCoperto()">
+    <input type="text" placeholder="coperto" formControlName="coperto">
+    <button type="submit">crea</button>
+  </form>
+  @if (header) {
+    <h1 id="configHeader" [style]="displayHeader.value">{{header}}</h1>
+    <button (click)="deleteHeader()" [style]="displayHeader.value">elimina</button>
+    <button (click)="displayHeader.toggle()" [style]="displayHeader.value">modifica</button>
+  }@else{
+    <button id="configHeaderButton" [style]="displayHeader.value" (click)="displayHeader.toggle()">+</button>
+  }
+  <form id="configHeaderForm" [style]="displayHeader.formValue" [formGroup]="headerForm" (submit)="handleHeaderSubmit()">
+      <input type="text" formControlName="testo">
+      <button id="configHeaderSubmit" type="submit">crea</button>
+    </form>
+  
+  @if (products.length == 0) {
+  <h1 id="configNessunProdotto">Ancora non hai aggiunto prodotti</h1>
+  } @for (product of products; track $index) {
+
+  <div class="configProduct">
+    <div class="configImgDiv">
+      <img class="configImg" src="{{ product.img }}" />
+    </div>
+    <div class="configDes">
+      <h3 class="configName">{{ product.nome }}</h3>
+
+      @if (product.allergeni.length > 0) {
+      <h3 class="configIngredienti">{{ product.ingredienti }}</h3>
+      }@else{
+      <h3 class="configIngredienti" style="margin-top: 2rem">
+        {{ product.ingredienti }}
+      </h3>
+      } @for (allergene of product.allergeni; track $index) {
+      <img src="{{ allergeneImg(allergene) }}" alt=" {{ product }} contiene {{ allergene }}" class="configAllergene" />
       }
-      
-      <div id="empty">
-        <div id="annullaNewProductDiv">
-          <button (click)="display.toggle()" [style]="display.formValue" id="annullaNewProduct">annulla</button>
+    </div>
+    <div class="configPriceDiv">
+      <h3 class="configPrice">{{ product.prezzo }}</h3>
+    </div>
+    <div class="configButtons">
+      <button class="editButton">
+        <img src="assets/edit.png" alt="modifica" (click)="editsetTrue(product)" class="editImg" />
+      </button>
+      <button class="deleteButton" (click)="deleteProduct(product)">
+        <img src="assets/delete.png" alt="cancella" class="deleteImg" />
+      </button>
+    </div>
+  </div>
+  }
+
+  <div id="empty">
+    <div id="annullaNewProductDiv">
+      <button (click)="display.toggle()" [style]="display.formValue" id="annullaNewProduct">
+        annulla
+      </button>
+    </div>
+
+    <form [formGroup]="newProductForm" (submit)="handlePost()" id="newProductForm">
+      <div id="newProduct" [style]="display.formValue">
+        <div id="newProductImgDiv">
+          <input type="file" value="seleziona un immagine" (change)="onImagePicked($event)" id="newImg" />
         </div>
-        
-        <form [formGroup]="newProductForm" (submit)="handlePost()" id="newProductForm">
-        <div id="newProduct" [style]="display.formValue">
-          
-          <div id="newProductImgDiv">
-            <input type="file" value="seleziona un immagine" (change)="onImagePicked($event)" id="newImg" >
+        <div id="newDes">
+          <div id="newNome">
+            <input type="text" formControlName="nome" placeholder="nome" />
+            <label for="congelato">congelato</label>
+            <input type="checkbox" formControlName="congelato" id="congelato">
           </div>
-          <div id="newDes">   
-              <div id="newNome">
-                <input type="text" formControlName="nome" placeholder="nome">
-              </div>    
-              <div id="newIngredienti">
-                <textarea name="" id="newIngredienti" formControlName="ingredienti" placeholder="ingredienti" cols="100" rows="5" maxlength="1000"></textarea>
-              </div>
-              
-              <div id="newAllergeni">
-              @for (allergene of allergeni; track $index) {
-                <div class="newAllergeneDiv">
-                  <input type="checkbox" formControlName="{{allergene}}" id="new{{allergene}}" value="{{allergene}}" class="newAllergene">
-                  <label for="new{{allergene}}">{{allergene}}</label>
-                </div>
-                  
-              }
+          <div id="newIngredienti">
+            <textarea name="" id="newIngredienti" formControlName="ingredienti" placeholder="ingredienti" cols="100"
+              rows="5" maxlength="1000"></textarea>
+          </div>
+
+          <div id="newAllergeni">
+            @for (allergene of allergeni; track $index) {
+            <div class="newAllergeneDiv">
+              <input type="checkbox" formControlName="{{ allergene }}" id="new{{ allergene }}" value="{{ allergene }}"
+                class="newAllergene" />
+              <label for="new{{ allergene }}">{{ allergene }}</label>
             </div>
+
+            }
           </div>
-          <div id="newPriceDiv">
-            <input type="number"  formControlName="prezzo" placeholder="prezzo" id="newPrice">
-          </div>
-          <div id="newSubmitDib">
-            <button class="primary" type="submit" id="newSubmit">crea</button>
-          </div>
-        
         </div>
-      </form>
+        <div id="newPriceDiv">
+          <input type="number" formControlName="prezzo" placeholder="prezzo" id="newPrice" />
+        </div>
+        <div id="newSubmitDib">
+          <button class="primary" type="submit" id="newSubmit">crea</button>
+        </div>
       </div>
+    </form>
+  </div>
 </div>
 <div id="addProductDiv">
-  <button id="addProduct" (click)="display.toggle()" [style]="display.value">+</button>
+  <button id="addProduct" (click)="display.toggle()" [style]="display.value">
+    +
+  </button>
 </div>
+
 <div id="editProductDiv" [style]="displayEdit.value">
   <form [formGroup]="editProductForm" (submit)="handlePut()" id="editProductForm">
+    <div id="editImgDiv">
+      <input type="file" (change)="onImagePut($event)" id="editImg" />
+    </div>
     <div id="editProduct">
       
-      <div id="editImgDiv">
-        <input type="file" (change)="onImagePut($event)" id="editImg">
-      </div>
-      <div class="editDes">    
-        <input type="text" id="editDes" placeholder="nome" formControlName="nome"> 
-        <input type="text" id="editIngredienti"  formControlName="ingredienti" placeholder="ingredienti"> 
-          <div id="editAllergeni">
-            @for (allergene of allergeni; track $index) {
-                <input type="checkbox" formControlName="{{allergene}}" id="edit{{allergene}}" class="editAllergene" value="{{allergene}}">
-                <label for="edit{{allergene}}">{{allergene}}</label>
-            }
+      <div id="editDes">
+        <div id="editName">
+          <input type="text" placeholder="nome" formControlName="nome" />
+        </div>
+        <div id="editIngredienti">
+          <textarea type="text" formControlName="ingredienti" placeholder="ingredienti"></textarea>
+        </div>
+        <div id="editAllergeni">
+          @for (allergene of allergeni; track $index) {
+          <input type="checkbox" formControlName="{{ allergene }}" id="edit{{ allergene }}" class="editAllergene"
+            value="{{ allergene }}" />
+          <label for="edit{{ allergene }}">{{ allergene }}</label>
+          }
         </div>
       </div>
-      <div class="editPriceDiv" style="display: inline;">
-        <input type="text" formControlName="prezzo" id="editPrice" placeholder="prezzo">
+      <div class="editPriceDiv" style="display: inline">
+        <input type="text" formControlName="prezzo" id="editPrice" placeholder="prezzo" />
       </div>
       <button class="primary" type="submit" id="editButton">modifica</button>
     </div>

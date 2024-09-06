@@ -4,15 +4,16 @@
     --secondario: ;
     --terziario: ;
     --immagine: inline-flex;
+    --coperto: flex;
     --piccoli: 16px;
     --grandi: 20px;
     --grandi2: 40px;
-    --font1: 'Montserrat', sans-serif;
-    --font2: 'Montserrat', sans-serif;
-    --pages: ;
+    --font1: ;
+    --font2: ;
+    --font3: ;
 }
 *{
-    font-family: 'Montserrat';
+    font-family: var(--font1);
     flex-shrink: 1;
     margin: 0;
     max-width: 100%;
@@ -24,6 +25,20 @@ body{
 }
 /*menu lauout*/
 
+/*custom classes*/
+.text1{
+    font-family: var(--font3);
+    font-size: var(--grandi2);
+}
+.text2{
+    font-family: var(--font2);
+    font-size: var(--grandi);
+}
+.text3{
+    font-family: var(--font1);
+    font-size: var(--piccoli);
+}
+/*custom classes*/
 
 
 /*home*/
@@ -31,10 +46,18 @@ body{
     display: flex;
     width: 100%;
     height: 100%;
+    
+}
+#homeDiv{
+    width: 100%;
+    height: 100%;
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-content:space-between;
+    gap: 5em;
     overflow: hidden;
+    margin: 3%;
 }
 #homeLogoDiv, #Menu, #lenguageForm{
     width: 100%;
@@ -53,11 +76,28 @@ body{
     color: var(--primario);
 }
 #homeLogoDiv{
-    width: fit-content;
-    height: fit-content;
-    margin-top: 5%;
-    padding-bottom: 20%;
+    width: 100%;
+}
+#homeLogo{
+    width: 15%;
 }   
+@media only screen and (max-width: 900px) {
+    #homeLogo{
+        width: 30%;
+    }
+    #homeLogoDiv{
+        margin-top: 5%;
+    }
+}
+@media only screen and (max-width: 450px){
+    #homeLogo{
+        width: 50%;
+    }
+    #homeLogoDiv{
+        margin-top: 45%;
+    }
+}
+
 
 /*end home*/
 
@@ -67,21 +107,25 @@ body{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    padding: 0.5em;
 }
 #navigateLogoDiv{
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-bottom: 5em;
 }
 #navigateLogo{
-    height: 15em;
-    
+    height: 11em;   
 }
 #navigateNav{
     list-style-type: none;
     display: flex;
     justify-content: center;
+    align-content: space-between;
+    gap: 1.5em;
     flex-wrap: wrap;
+    padding: 0;
 }
 .navigatePageDiv{
     width: 100%;
@@ -90,16 +134,17 @@ body{
 }
 .navigatePage{
     border-radius: 50px;
-     padding: 0.1em 0.3em;
-     font-size: var(--grandi2);
+    padding: 0.2em 0.7em;
+    font-size: var(--grandi2);
     color: var(--primario);
     text-transform: uppercase;
     font-weight: normal;
     cursor: pointer;
     text-align: center;
+    border: hidden 2px var(--primario);
 }
 .navigatePage:hover{
-    border:  solid 3px var(--primario);
+    border:  solid 2px var(--primario);
     
 }
 #navigateAllergeni{
@@ -120,7 +165,7 @@ body{
     position: fixed;
     top: 0;
     gap: 2em;
-    padding-top: 2%;
+    padding: 2% 0;
     display: inline-flex;
     justify-content: space-around;
     list-style: none;
@@ -135,12 +180,27 @@ body{
  padding: 0.5% 1%;
  text-transform: uppercase;
  font-weight: bold;
+ height: 2em;
+ display: flex;
+ align-content: center;
 }
-#nav .span:hover{
+@media (hover: Hover){
+    #nav .span:hover{
     cursor: pointer;
     color: var(--secondario);
     background-color: var(--primario);
     border-radius: 50px;
+    }
+}
+
+@media only screen and (max-width: 700px){
+    #nav{
+        height: 10%;
+        padding: 5%;
+    }
+    #nav .span{
+        padding: 2% 5%;
+    }
 }
 /*active route style*/
 #nav .active{
@@ -188,19 +248,86 @@ body{
     opacity: 0.5;
 }
 #coperto{
-    width: 70%;
+    width: 90%;
+    margin: 0 5%;
     font-weight: normal;
     text-align: end;
+    display: var(--coperto);
+}
+@media only screen and (max-width: 700px){
+    #footer{
+        height: 12%;
+    }
+    #pages{
+        margin-bottom: 3em;
+        height: 1.5em;
+        gap: 10%;
+    }
+    .page{
+        height: 1em;
+        width: 1em;
+    }
 }
 /*end footer*/
 
-
-/*grid*/
-@media only screen and (max-width: 700px) {
-    #grid{
-        margin: 20% 0;
+/*allergeni*/
+#allergeniComponent{
+    margin: 8% 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+#ALLERGENI{
+    text-align: center;
+    color: var(--primario);
+    width: 100%;
+    margin-bottom: 10%;
+}
+#allergeniImgs{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+    gap: 4%;
+}
+.allergeneImg{
+    aspect-ratio: 1/1;
+    width: 20%;
+}
+#prevAllergeniDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 2em;
+    margin-top: 20%;
+}
+#prevAllergeni{
+    display: flex;
+    background-color: var(--primario);
+    height: 100%;
+    border: none;
+    border-radius: 50px;
+    padding: 0 3em;
+}
+#prevAllergeniImg{
+    width: 100%;
+    height: 100%;
+}
+@media only screen and (max-width: 600px){
+    #allergeniComponent{
+        margin: 30% 0;
+    }
+    #ALLERGENI{
+        margin-bottom: 20%;
     }
 }
+/*end allergeni*/
+
+/*grid*/
+
+
 .girdWrapper{
     width: 100%;
 }
@@ -237,7 +364,6 @@ body{
 }
 .infoButton{
     overflow: hidden;
-    border: 0.4em solid var(--primario);
     border-radius: 50%;
     display: var(--immagine);
     align-self: center;
@@ -251,6 +377,8 @@ body{
 }
 .productInfoImg{
     background-color: var(--primario);
+    aspect-ratio: 1/1;
+    width: 3em;
 }
 .productName{
     font-size: var(--grandi);
@@ -281,7 +409,16 @@ body{
 .nextProducts{
     left: 100%;
 }
+@media only screen and (max-width: 700px){
+    #grid{
+        margin: 0;
+        padding: 25% 0;
+    }
+    .allergene{
+        height: 1.5em;
+    }
 
+}
 
 /*end grid*/
 
@@ -559,27 +696,29 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aliceblue;
+    background-color: white;
 }
 #login{
-    border-radius: 1em;
-    border: 2px solid lightsteelblue;
-    border-bottom: 4px solid lightslategray ;
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 3px 0px;
+    border: 1px solid rgba(0, 0, 0, .125);;
     display: flex;
-    padding: 1em;
+    padding: 1em 3em;
     flex-wrap: wrap;
     justify-content: center;
-    width: 40%;
+    width: 30%;
+
 }
 #loginTitle{
     width: 100%;
     margin-bottom: 1em;
     text-align: center;
+    text-transform: uppercase;
 }
 #registerbutton{
     width: 100%;
     text-align: center;
     margin-top: 1em;
+    color: rgb(13, 110, 253);
 }
 #loginForm{
     display: flex;
@@ -594,10 +733,21 @@ body{
     justify-content: center;
 }
 #inputEmail, #inputPassword{
-    border-radius: 50px;
-    border: none;
-    border-bottom: 2px solid lightslategray ;
+    border-radius:5px ;
+    border: 1px solid lightslategray ;
     padding: 0.5em;
+}
+#loginPasswordImg, #loginEmailImg{
+    height: 2em;
+}
+#loginSubmit{
+    color: white;
+    background-color: rgb(13, 110, 253);
+    border: none;
+    border-radius: 5px;
+    padding: 0.4em;
+    margin: 0.3em;
+    font-size: 15px;
 }
 #invalid{
     width: 100%;
@@ -607,3 +757,84 @@ body{
     font-size: var(--piccoli);
 }
 /*end login*/
+
+
+/*edit product*/
+#editProductDiv{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    top: 0;
+    right: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    backdrop-filter: blur(5px);
+}
+#editProductForm{
+    display: flex;
+    width: 55%;
+    flex-wrap: wrap;
+}
+#editImgDiv{
+    width: 100%;
+}
+#editProduct{
+    display: flex;
+    padding: 0.3em;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+/*end edit product*/
+
+
+/*sign-in*/
+#signInDiv{
+    display: flex;
+    width: 100%;
+    height: 90vh;
+    align-items: center;
+    justify-content: center;
+}
+#signInForm{
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 3px 0px;
+    border: 1px solid rgba(0, 0, 0, .125);;
+    display: flex;
+    padding: 1em 3em;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 30%;
+    align-content: space-between;
+    gap: 0.5em;
+}
+#signInNome, #signInEmail, #signInPassword, #passwordConfirm{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#registrati{
+    width: 100%;
+    margin-bottom: 1em;
+    text-align: center;
+    text-transform: uppercase;
+}
+#signInSubmit{
+    color: white;
+    background-color: rgb(13, 110, 253);
+    border: none;
+    border-radius: 5px;
+    padding: 0.4em;
+    margin: 0.3em;
+    font-size: 15px;
+}
+
+#emailNonValida,#passwordNonValida{
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-weight: normal;
+    font-size: var(--piccoli);
+}
+/*end sign-in*/

@@ -24,7 +24,7 @@ export class NavComponent {
 
 
   isLoggedIn: boolean = false
-  coperto:number = 0
+  coperto:string = '0'
   pages: string[] = [];
   ngOnInit(){
     this.pageService.getPages().subscribe(data =>{

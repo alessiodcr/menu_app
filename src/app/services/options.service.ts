@@ -15,6 +15,8 @@ export class OptionsService {
     return this.http.get<options>('http://localhost:3000/options')
   }
   postOptions( options:options): Observable<options>{
-    return this.http.post<options>('http://localhost:3000/options', options)
+    return this.http.post<options>('http://localhost:3000/options', options, {
+      withCredentials: true
+    })
   }
 }

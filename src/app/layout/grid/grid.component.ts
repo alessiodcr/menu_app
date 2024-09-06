@@ -1,9 +1,10 @@
-import { afterRender, Component, HostListener } from '@angular/core';
+import { afterRender, Component, HostListener, inject } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { NavigationStart, Router, RoutesRecognized } from '@angular/router';
-import { Portate, Product, display } from '../../../types';
+import { Portate, Product, display, headers } from '../../../types';
 import { allergeneImg } from '../../../assets/utils';
 import { filter, pairwise } from 'rxjs';
+import { HeadersService } from '../../services/headers.service';
 
 @Component({
   selector: 'app-grid',
@@ -18,17 +19,18 @@ export class GridComponent {
   constructor(
     //includo tutti i services che mi servono e anche l'oggetto Router 
     private productService: ProductsService, //servizio prodotti
-    private router: Router, //classe router
+    private router: Router,
+    private headersService: HeadersService//classe router
   ) {
 
-      afterRender(()=>{
-        let width = (document.querySelector('#portateDiv') as HTMLElement).clientWidth * this.pages.indexOf(router.url.slice(6));
+    afterRender(() => {
+      let width = (document.querySelector('#portateDiv') as HTMLElement).clientWidth * this.pages.indexOf(router.url.slice(6));
       (document.querySelector('#portateDiv') as HTMLElement).style.setProperty('right', width + 'px');
-        (document.querySelector(`#${router.url.slice(6)}`) as HTMLElement)?.style.setProperty('display', 'flex')
-      })
+      (document.querySelector(`#${router.url.slice(6)}`) as HTMLElement)?.style.setProperty('display', 'flex')
+    })
 
     //al cambio di route eseguo il blocco di codice dentro l'if
-    
+
 
 
 
@@ -44,21 +46,23 @@ export class GridComponent {
       (document.querySelector(`#${this.currentUrl}`) as HTMLElement)?.style.setProperty('display', 'flex');
       let width = (document.querySelector('#portateDiv') as HTMLElement).clientWidth * this.pages.indexOf(this.currentUrl);
       (document.querySelector('#portateDiv') as HTMLElement).style.setProperty('right', width + 'px');
-      setTimeout( ()=>{
+      setTimeout(() => {
         (document.querySelector(`#${this.prevUrl}`) as HTMLElement).style.setProperty('display', 'none');
-      }, 500)
-      
+      }, 150)
+
     });
   }
   @HostListener('window:resize', [])
-  onResize(){
+  onResize() {
     let width = (document.querySelector('#portateDiv') as HTMLElement).clientWidth * this.pages.indexOf(this.currentUrl);
     (document.querySelector('#portateDiv') as HTMLElement).style.setProperty('right', width + 'px');
   }
-  
+
   allergeneImg = allergeneImg
 
-
+  headers: headers = {
+    antipasti: 'ciao'
+  }
   prevUrl: string = ''
   currentUrl: string = ''
   products: Portate = {};
@@ -80,31 +84,34 @@ export class GridComponent {
 
 
   ngOnInit() {
-
     //quando il componente viene renderizzato per la prima volta 
+    this.headersService.getHeaders().subscribe(headers=>{
+      this.headers = headers
+    })
+    
     this.productService.getPortate().subscribe((response) => {
       this.products = response;
       this.pages = Object.keys(this.products);
       const id = this.router.url.slice(6);
       this.prevUrl = id;
-      this.router.navigate([`menu/${id}`], {onSameUrlNavigation: 'reload'})
-      
-      
+      this.router.navigate([`menu/${id}`], { onSameUrlNavigation: 'reload' })
+
+
     })
   }
 
 
-  nextPage(){
+  nextPage() {
     const id = this.router.url.slice(6)
-    if(this.pages.indexOf(id) < this.pages.length - 1){
+    if (this.pages.indexOf(id) < this.pages.length - 1) {
       let navigate = this.pages[this.pages.indexOf(id) + 1]
       this.router.navigate([`menu/${navigate}`]);
-      
+
     }
   }
-  prevPage(){
+  prevPage() {
     const id = this.router.url.slice(6)
-    if(this.pages.indexOf(id) > 0){
+    if (this.pages.indexOf(id) > 0) {
       let navigate = this.pages[this.pages.indexOf(id) - 1]
       this.router.navigate([`menu/${navigate}`]);
     }
@@ -113,37 +120,37 @@ export class GridComponent {
 
   startX = NaN
   mouseX = NaN
-  touchStart(event: any){
+  touchStart(event: any) {
     let x = event.touches[0].clientX
     this.startX = x
   }
-  touchEnd(event: any){
+  touchEnd(event: any) {
     let startX = this.startX
     let endX = event.changedTouches[0].pageX;
     let deltaX = startX - endX
-    if(Math.abs(deltaX) >= 75){
-      if(deltaX > 0){
+    if (Math.abs(deltaX) >= 50) {
+      if (deltaX > 0) {
         this.nextPage()
-      }else if( deltaX < 0){
+      } else if (deltaX < 0) {
         this.prevPage()
       }
     }
   }
 
-  mouseStart(event: any){
+  mouseStart(event: any) {
     this.mouseX = event.clientX
   }
-  mouseUp(event: any){
+  mouseUp(event: any) {
     let endX = event.clientX
     let deltaX = this.mouseX - endX
-    if(Math.abs(deltaX) >= 75){
-      if(deltaX > 0){
+    if (Math.abs(deltaX) >= 75) {
+      if (deltaX > 0) {
         this.nextPage()
-      }else if( deltaX < 0){
+      } else if (deltaX < 0) {
         this.prevPage()
       }
     }
   }
-  
+
 
 }

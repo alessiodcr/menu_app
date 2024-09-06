@@ -17,7 +17,9 @@ export class ImgUploadService {
     console.log(filename)
     let formData = new FormData()
     formData.append('img', img, filename)
-    return this.http.post('http://localhost:3000/publicImgUpload', formData)
+    return this.http.post('http://localhost:3000/publicImgUpload', formData, {
+      withCredentials: true
+    })
     }else{
       return null
     }

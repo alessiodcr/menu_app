@@ -5,10 +5,10 @@
     <ul id="navigateNav">
         @for (page of pages; track $index) {
             <li class="navigatePageDiv" [routerLink]="['..' , 'menu', page]">
-                <span class="navigatePage">{{page}}</span>
+                <span class="navigatePage text1">{{page}}</span>
             </li>
         }
-        <li class="navigatePage" id="navigateAllergeni" [routerLink]="['..', 'menu' , 'allergeni']">
+        <li class="navigatePage text2" id="navigateAllergeni" [routerLink]="['..', 'menu' , 'allergeni']">
             allergeni
         </li>
     </ul>
