@@ -3,10 +3,12 @@ import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { OptionsService } from '../../services/options.service';
 import { options } from '../../../types';
 import { ImgUploadService } from '../../services/img-upload.service';
+import { allergeneImg } from '../../../assets/utils';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 @Component({
   selector: 'app-options',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatSlideToggleModule],
   templateUrl: './options.component.html',
   styleUrl: './options.component.css'
 })
@@ -14,6 +16,8 @@ export class OptionsComponent {
   constructor (private optionsService: OptionsService,
     private publicUpload: ImgUploadService
   ){}
+
+
   ngOnInit(){
     this.optionsService.getOptions().subscribe(res =>{
       this.optionsForm.controls.primario.setValue(res.primario)
@@ -47,6 +51,7 @@ export class OptionsComponent {
     font3: new FormControl()
   })
 
+
   imgForm = new FormGroup({
     cereali: new FormControl(),
     crostacei: new FormControl(),
@@ -68,24 +73,18 @@ export class OptionsComponent {
 
   allergeni: string[] = ['cereali', 'crostacei', "uova","pesce", "arachidi","soia","latte","fruttaAGuscio","sedano","senape","sesamo","Asolforica","lupini","molluschi", "funghi"]
 
-  fontPiccoli(){
-    return `font-size: ${this.optionsForm.value.piccoli}px`
+  text3(){
+    return `font-size: ${this.optionsForm.value.piccoli}px;  font-family: ${this.optionsForm.value.font3}`
   }
-  fontGrandi(){
-    return `font-size: ${this.optionsForm.value.grandi}px`
+  text2(){
+    return `font-size: ${this.optionsForm.value.grandi}px;  font-family: ${this.optionsForm.value.font2}`
   }
-  fontGrandi2(){
-    return `font-size: ${this.optionsForm.value.grandi2}px`
+  text1(){
+    return `font-size: ${this.optionsForm.value.grandi2}px;  font-family: ${this.optionsForm.value.font1}`
   }
-  font1(){
-    return `font-family: ${this.optionsForm.value.font1}`
-  }
-  font2(){
-    return `font-family: ${this.optionsForm.value.font2}`
-  }
-  font3(){
-    return `font-family: ${this.optionsForm.value.font3}`
-  }
+  
+
+  allergeneImg = allergeneImg
 
   onImagePicked(event:any){
     const filename:string = event.target.id 

@@ -23,6 +23,9 @@ body{
     width: 100%;
     margin: 0;
 }
+table{
+    border-spacing: 0;
+}
 /*menu lauout*/
 
 /*custom classes*/
@@ -172,10 +175,10 @@ body{
     z-index: 3;
     overflow-x: scroll;
 }
-#nav::-webkit-scrollbar {
+#nav::-webkit-scrollbar,  #configNav::-webkit-scrollbar{
     display: none;
   }
-#nav .span{
+#nav .span,#configNav .span{
  color: var(--primario);
  padding: 0.5% 1%;
  text-transform: uppercase;
@@ -185,7 +188,7 @@ body{
  align-content: center;
 }
 @media (hover: Hover){
-    #nav .span:hover{
+    #nav .span:hover,#configNav .span:hover{
     cursor: pointer;
     color: var(--secondario);
     background-color: var(--primario);
@@ -194,16 +197,16 @@ body{
 }
 
 @media only screen and (max-width: 700px){
-    #nav{
+    #nav, #configNav{
         height: 10%;
         padding: 5%;
     }
-    #nav .span{
+    #nav .span,#configNav .span{
         padding: 2% 5%;
     }
 }
 /*active route style*/
-#nav .active{
+#nav .active, #configNav .active{
     cursor: pointer;
     color: var(--secondario);
     background-color: var(--primario);
@@ -496,16 +499,32 @@ body{
 
 
 
+#configNav{
+    background-color: var(--secondario);
+    width: 95%;
+    position: fixed;
+    top: 0;
+    gap: 2em;
+    padding: 2% 0;
+    margin-left: 5%;
+    display: inline-flex;
+    justify-content: space-around;
+    list-style: none;
+    z-index: 3;
+    overflow-x: scroll;
+}
+
 
 /*config products*/
 #configProducts{
     display: flex;
-    width: 100%;
+    width: 95%;
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px 0;
     margin-top: 3em;
     margin-top: 8%;
+    margin-left: 5%;
 }
 .configProduct{
     display: inline-flex;
@@ -634,6 +653,7 @@ body{
 #portateComponent{
     display: flex;
     justify-content: center;
+    margin-left: 5%;
 }
 #portate{
     display: flex;
@@ -800,7 +820,7 @@ body{
 }
 #signInForm{
     box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 3px 0px;
-    border: 1px solid rgba(0, 0, 0, .125);;
+    border: 1px solid rgba(0, 0, 0, .125);
     display: flex;
     padding: 1em 3em;
     flex-wrap: wrap;
@@ -838,3 +858,206 @@ body{
     font-size: var(--piccoli);
 }
 /*end sign-in*/
+
+/*sidenav*/
+#sideNavDiv{
+    height: 100%;
+    position: fixed;
+    z-index: 10;
+    top:0;
+    left: 0;
+    width: 5%;
+    min-width: 5%;
+    background-color:rgb(33, 37, 41) ;
+    border-right: solid white 1px;
+    display: flex;
+}
+#sideNav{
+    list-style-type: none;
+    padding: 0;
+}
+.sideNavLi:hover{
+    cursor: pointer;
+    
+}
+.sideNavLi{
+    aspect-ratio: 1/1;
+    width: 80%;
+    margin: 10%;
+}
+/*end sidenav*/
+
+/*options*/
+#options{
+    margin-left: 5%;
+    width: 95%;
+    padding: 2%;
+    display: flex;
+    flex-wrap: wrap;
+}
+#scrittaOpzioni{
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+}
+#opzioniForm{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+#colori{
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    justify-items: space-between;
+    gap: 10%;
+    padding: 5%;
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 3px 0px;
+    border: 1px solid rgba(0, 0, 0, .125);
+    margin-bottom: 5%;
+}
+#color1 , #color2, #color3 {
+    display: flex ;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#color1 label , #color2 label, #color3 label{
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+}
+#exampleProduct{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 3px 0px;
+    border: 1px solid rgba(0, 0, 0, .125);
+    margin: 5%;
+}
+#examplePortataDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#examplePortata{
+    padding: 0.3em 0.5em;
+    cursor: pointer;
+    color: var(--secondario);
+    background-color: var(--primario);
+    border-radius: 50px;
+    margin: 3% 0;
+}
+#optionsProduct{
+    display: inline-flex;
+    width: 70%;
+    height: fit-content;
+    margin-bottom: 1em;
+    
+   padding: 1em 2em;
+}
+
+#texts{
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    gap: 7%;
+    flex-wrap: wrap;
+}
+#text1Title,#text2Title,#text3Title{
+    width: 100%;
+    text-align: center;
+}
+#fontsize1,#fontsize2,#fontsize3{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#fontsize1 input,#fontsize2 input,#fontsize3 input{
+    width: 70%;
+}
+#family1,#family2,#family3{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#family1 label,#family2 label,#family3 label{
+    width: 100%;
+    text-align: center;
+}
+.text{
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 3px 0px;
+    border: 1px solid rgba(0, 0, 0, .125);
+    display: flex;
+    padding: 0.5em;
+    width: 25%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-between;
+}
+#optionsCheckbox{
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-around;
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 3px 0px;
+    border: 1px solid rgba(0, 0, 0, .125);
+    padding: 3em 1em;
+    margin-bottom: 5%;
+}
+#optionsSubmitDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#optionsSubmit{
+    color: white;
+    background-color: rgb(13, 110, 253);
+    border: none;
+    border-radius: 5px;
+    padding: 0.4em;
+    margin: 0.3em;
+    font-size: 20px;
+    text-transform: uppercase ;
+}
+/*end options*/
+
+/*accessi*/
+#accessiComponent{
+    margin-left: 5%;
+    padding: 5%;
+}
+#pendingTitle, #usersTitle{
+    width: 90%;
+    text-align: center;
+}
+#pendingTable{
+    width: 90%;
+    max-width: 90%;
+    border: rgb(33, 37, 41) solid 1px
+}
+.pendingData{
+    padding: 0.5em;
+    text-align: center;
+    border: rgb(33, 37, 41) solid 1px;
+}
+#pendingTableHead .pendingRow{
+    background-color: rgb(33, 37, 41);
+    color: white;
+    gap: 0;
+}
+#usersTable{
+    width: 90%;
+    max-width: 90%;
+    border: rgb(33, 37, 41) solid 1px
+}
+.usersData{
+    padding: 0.5em;
+    text-align: center;
+    border: rgb(33, 37, 41) solid 1px;
+}
+#usersTableHead .usersRow{
+    background-color: rgb(33, 37, 41);
+    color: white;
+    gap: 0;
+}
+/*end accessi*/

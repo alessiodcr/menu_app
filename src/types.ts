@@ -67,6 +67,7 @@ export interface account {
     email: string,
     password: string,
     status: string
+    date?: string;
 }
 export interface accounts {
     users: account[]

@@ -20,7 +20,7 @@ export class SignInComponent {
     nome: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
-    confirm: new FormControl('', [Validators.required, Validators.pattern('^((?!.*[s])(?=.*[A-Z])(?=.*d).{8,99})')])
+    confirm: new FormControl('', [Validators.required])
   })
 
 

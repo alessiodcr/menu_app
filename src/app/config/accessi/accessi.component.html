@@ -1,53 +1,66 @@
-<div id="serverSwitch">
-    <button (click)="switch()">rendi il menu non disponibile</button>
-</div>
-<div id="pendings">
-    <h2>
-        Richieste Registrazione
-    </h2>
-    <table>
-        <thead>
-            <tr>
-                <td>email</td>
-                <td>permessi</td>
-            </tr>
-        </thead>
-        <tbody>
-            @for (account of pendings; track $index) {
-                <tr class="pending">
-                    <td>{{account.email}}</td>
-                    <td>{{account.class}}</td>
-                    <td><button class="btn" (click)="approve(account)">accetta richiesta</button></td>
-                    <td><button class="btn" (click)="reject(account)">rifiuta richiesta</button></td> 
+<div id="accessiComponent">
+    <div id="serverSwitch">
+        <button (click)="switch()">rendi il menu non disponibile</button>
+    </div>
+    <div id="pendings">
+        <h2 id="pendingTitle">
+            Richieste Registrazione
+        </h2>
+        <table id="pendingTable">
+            <thead id="pendingTableHead">
+                <tr class="pendingRow">
+                    <td class="pendingData">nome</td>
+                    <td class="pendingData">email</td>
+                    <td class="pendingData">data di creazione</td>
+                    <td></td>
+                    <td></td>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
-<div id="users">
-    <h2>Utenti Registrati</h2>
-    <table>
-        <thead>
-            <tr>
-                <td>email</td>
-                <td>permessi</td>
-            </tr>
-        </thead>
-        <tbody>
-            @for (account of users; track $index) {
-                <tr class="user">
-                    <td>{{account.email}}</td>
-                    <td>{{account.class}}</td>
-                    <td><button class="btn" (click)="removeAccount(account)">rimuovi account</button></td>
-                    <td><button (click)="toggleSuspension(account)">
-                        @if (account.status == "on") {
-                            sospendi
-                        }@else if(account.status == "suspended") {
-                            riabilita
-                        }
-                    </button></td>
+            </thead>
+            <tbody id="pendingTableBody">
+                @for (account of pendings; track $index) {
+                    <tr  class="pendingRow">
+                        <td class="pendingData">{{account.nome}}</td>
+                        <td class="pendingData">{{account.email}}</td>
+                        <td class="pendingData">{{account.date}}</td>
+                        <td class="pendingData"><button class="btn" (click)="approve(account)">accetta richiesta</button></td>
+                        <td class="pendingData"><button class="btn" (click)="reject(account)">rifiuta richiesta</button></td> 
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="users">
+        <h2 id="usersTitle">Utenti Registrati</h2>
+        <table id="usersTable">
+            <thead id="usersTableHead">
+                <tr class="usersRow">
+                    <td class="usersData">nome</td>
+                    <td class="usersData">email</td>
+                    <td class="usersData">permessi</td>
+                    <td class="usersData">data di creazioni</td>
+                    <td class="usersData"></td>
+                    <td class="usersData"></td>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody id="usersTableBody">
+                @for (account of users; track $index) {
+                    <tr class="usersRow">
+                        <td class="usersData">{{account.nome}}</td>
+                        <td class="usersData">{{account.email}}</td>
+                        <td class="usersData">{{account.class}}</td>
+                        <td class="usersData">{{account.date}}</td>
+                        <td class="usersData"><button class="btn" (click)="removeAccount(account)">rimuovi account</button></td>
+                        <td class="usersData"><button (click)="toggleSuspension(account)">
+                            @if (account.status == "on") {
+                                sospendi
+                            }@else if(account.status == "suspended") {
+                                riabilita
+                            }
+                        </button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
 </div>

@@ -1,34 +1,26 @@
-<button class="btn" (click)="sideDisplay.toggle()" id="navbutton">
-    <img src="assets/menu.png" id="sideNavMenu">
-</button>
-<div id="sideNavBox" [style]="sideDisplay.value">
+<div id="sideNavDiv" >
     <ul id="sideNav">
-        <button class="btn" id="x" (click)="sideDisplay.toggle()">
-            <img src="assets/X.png" id="x">
-        </button>
-        <li>
-            <span class="span" [routerLink]="['options']">opzioni</span>
+        <li class="sideNavLi"  id="sideNavRitorna">
+            <a href="http://localhost:4200/menu/{{pages[0]}}">
+                <img src="{{env.serverImg + 'home.png' }}" alt="ritorna al menu">
+            </a>
         </li>
-        <li>
-            <span class="span" [routerLink]="['accessi']">area proprietario</span>
+        <li [routerLink]="['options']" class="sideNavLi" id="sideNavOptions">
+            <img src="{{env.serverImg + 'options.png' }}" alt="opzioni">
         </li>
-        <li>
-            <span class="span" [routerLink]="['menu', pages[0]]">menu</span>
+        <li [routerLink]="['accessi']" class="sideNavLi" id="sideNavSuper">
+            <img src="{{env.serverImg + 'super.png' }}" alt="area direttore">
         </li>
-        <li>
-            <span [routerLink]="['portate']">modifica le portate</span>
+        <li [routerLink]="['menu', pages[0]]" class="sideNavLi" id="sideNavMenu">
+            <img src="{{env.serverImg + 'menu.png' }}" alt="modifica il menu">
         </li>
-        <li>
-            <a href="http://localhost:4200/menu/{{pages[0]}}">ritorna al menu</a>
+        <li [routerLink]="['portate']" class="sideNavLi" id="sideNavPortate">
+            <img src="{{env.serverImg + 'portate.png' }}" alt="modifica le portate">
         </li>
         
-        <li>
-            <span>acccount: <br> {{account.email}}</span>
-            <br>
-            <span>permessi: <br>{{account.class}}</span>
-            <br>
-            <button class="btn" (click)="menuClick()">logout</button>
+        
+        <li class="sideNavLi"  id="sideNavLogout" (click)="menuClick()">
+            <img src="{{env.serverImg + 'logout.png' }}" alt="effettua il logout">
         </li>
-
     </ul>
 </div>

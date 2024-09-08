@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { account } from '../../../types';
 import { PagesService } from '../../services/pages.service';
+import { ENV } from '../../../env/variables';
 @Component({
   selector: 'app-sidenav',
   standalone: true,
@@ -28,16 +29,7 @@ export class SidenavComponent {
     })
   }
 
-  sideDisplay = {
-    value: 'display: none;',
-    toggle(){
-      if(this.value == 'display: none;'){
-        this.value = ''
-      }else{
-        this.value = 'display: none;'
-      }
-    }
-  }
+  env = ENV
 
   account:any = JSON.parse(localStorage.getItem('user') as string)
 }

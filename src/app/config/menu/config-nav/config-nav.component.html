@@ -1,4 +1,4 @@
-<ul id="nav">
+<ul id="configNav">
     @for (page of pages; track $index) {
         <li class="config{{page}} span" [routerLink]="[pageRoute($index, pages)]" routerLinkActive="active">
             {{page}}

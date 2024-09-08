@@ -1,66 +1,111 @@
 <div id="options">
-    <h1>Opzioni</h1>
-    <form [formGroup]="optionsForm" (submit)="handleSubmit()">
-        <div class="input" id="color1">
-            <label for="first">colore primario</label>
-            <input type="color" id="first" formControlName="primario">
+    <h1 id="scrittaOpzioni">Opzioni</h1>
+    <form [formGroup]="optionsForm" (submit)="handleSubmit()" id="opzioniForm">
+        <div id="colori">
+            <div class="input" id="color1">
+                <label for="first">colore primario</label>
+                <input type="color" id="first" formControlName="primario">
+            </div>
+            <div id="color2" class="input">
+                <label for="second">colore secondario</label>
+                <input type="color" id="second" formControlName="secondario">
+            </div>
+            <div id="color3" class="input">
+                <label for="third">colore terziario</label>
+                <input type="color" id="third" formControlName="terziario">
+            </div>
         </div>
-        <div id="color2" class="input">
-            <label for="second">colore secondario</label>
-            <input type="color" id="second" formControlName="secondario">
+       <div id="texts">
+        <div id="text1" class="text">
+            <h4 id="text1Title">testo 1</h4>
+            <div id="fontsize1" class="textInput">
+                <label for="font1">dimensione: {{optionsForm.value.grandi2}}px</label>  
+                <input type="range"   id="font1" step="1" min="20" max="40" formControlName="grandi2">
+            </div>
+            <div id="family1" class="input">
+                <label for="family1">font-family:</label>
+                <select  id="family1" formControlName="font1">
+                    @for (font of fonts; track $index) {
+                        <option value="{{font}}">{{font}}</option>
+                    }
+                </select>
+            </div>
         </div>
-        <div id="color3" class="input">
-            <label for="third">colore terziario</label>
-            <input type="color" id="third" formControlName="terziario">
+        <div id="text2" class="text">
+            <h4 id="testo2Title">testo 2</h4>
+            <div id="fontsize2" class="input">
+                <label for="fontsize2">dimensione: {{optionsForm.value.grandi}}px</label>
+                <input type="range" id="fontsize2" step="1" min="10" max="24" formControlName="grandi">
+            </div>
+            <div id="family2">
+                <label for="family2">font-family:</label>
+                <select id="family2" formControlName="font2">
+                    @for (font of fonts; track $index) {
+                        <option value="{{font}}">{{font}}</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div id="text3" class="text">
+            <h4 id="text3Title">testo 3</h4>
+            <div id="fontsize3" class="input">
+                <label for="fontsize3">dimensione: {{optionsForm.value.piccoli}}px</label>  
+                <input type="range" id="fontsize3" step="1" min="8" max="20" formControlName="piccoli">
+            </div>
+            <div id="family3" class="input">
+                <label for="family3">font-family:</label>
+                <select id="family3" formControlName="font3">
+                    @for (font of fonts; track $index) {
+                        <option value="{{font}}">{{font}}</option>
+                    }
+                </select>
+            </div>
+        </div>
+       </div>
+        <div id="exampleProduct">
+            <div id="examplePortataDiv">
+                <h1 [style]="text1()" id="examplePortata">ANTIPASTI</h1>
+            </div>
+            
+            <div id="optionsProduct">
+                @if(optionsForm.value.immagine){<div class="infoButton">
+                  <img
+                    src="http://localhost:3000/img/infoProdotti.png"
+                    alt="info sul piatto"
+                    class="productInfoImg"
+                  />
+                </div>}
+                <div class="productProprieties">
+                  <h3 class="productName" [style]="text2()">nome</h3>
+                  <h3 class="ingredienti" [style]="text3()">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
+                  @for (allergene of allergeni; track $index) {
+                    <img
+                    src="{{ allergeneImg(allergene) }}"
+                    alt="cereali"
+                    class="allergene"
+                  />
+                  }
+                </div>
+                <div class="priceDiv">
+                  <h3 class="price text2">€12,50</h3>
+                </div>
+              </div>
+        </div>
+        <div id="optionsCheckbox">
+            <div id="immagine" class="input">
+                <label for="immagine">mostra immagine dei prodotti</label>
+                <input type="checkbox" id="immagine" formControlName="immagine">     
+            </div>
+            <div id="copertoOption" class="input">
+                <label for="copertoOption">mostra coperto/servizio</label>
+                <input type="checkbox" id="copertoOption" formControlName="coperto">     
+            </div>  
         </div>   
-        <div id="immagine" class="input">
-            <label for="immagine">mostra immagine dei prodotti</label>
-            <input type="checkbox" id="immagine" formControlName="immagine">     
+        
+        <div id="optionsSubmitDiv">
+            <button type="submit" id="optionsSubmit">conferma</button>
         </div>
-        <div id="copertoOption" class="input">
-            <label for="copertoOption">mostra coperto/servizio</label>
-            <input type="checkbox" id="copertoOption" formControlName="coperto">     
-        </div>
-        <div id="fontsize1" class="input">
-            <label for="fontG">grandezza caratteri grandi: {{optionsForm.value.grandi}}</label>
-            <input type="range" id="fontG" step="1" min="10" max="24" formControlName="grandi">
-            <span [style]="fontGrandi()">esempio</span>
-        </div>
-        <div id="fontsize2" class="input">
-            <label for="font2P">grandezza caratteri piccoli: {{optionsForm.value.piccoli}}</label>  
-            <input type="range" id="font2P" step="1" min="8" max="20" formControlName="piccoli">
-            <span [style]="fontPiccoli()"> esempio</span>
-        </div>
-        <div id="fontsize3" class="input">
-            <label for="font3P">grandezza caratteri piccoli: {{optionsForm.value.grandi2}}</label>  
-            <input type="range" id="font3P" step="1" min="20" max="40" formControlName="grandi2">
-            <span [style]="fontGrandi2()"> esempio</span>
-        </div>
-        <div id="font1" class="input">
-            <label for="font1">primo font</label>
-            <select name="font1" id="font1" formControlName="font1">
-                @for (font of fonts; track $index) {
-                    <option value="{{font}}">{{font}}</option>
-                }
-            </select>
-        </div>
-        <div id="font2" class="input">
-            <label for="font2">secondo font</label>
-            <select name="font2" id="font2" formControlName="font2">
-                @for (font of fonts; track $index) {
-                    <option value="{{font}}">{{font}}</option>
-                }
-            </select>
-        </div>
-        <div id="font3" class="input">
-            <label for="font3">secondo font</label>
-            <select name="font3" id="font3" formControlName="font3">
-                @for (font of fonts; track $index) {
-                    <option value="{{font}}">{{font}}</option>
-                }
-            </select>
-        </div>
-        <button type="submit" class="btn">conferma</button>
+        
     </form>
 
 
