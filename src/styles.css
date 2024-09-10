@@ -1424,3 +1424,18 @@ table{
 
 
 /*end accessi*/
+
+
+/*menu non disponibile*/
+#menuNonDisponibile{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#menuNonDisponibile h1{
+    width: 100%;
+    text-align: center;
+}
+/*end menu non disponibile*/
