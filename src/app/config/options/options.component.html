@@ -1,6 +1,6 @@
 <div id="options">
     <h1 id="scrittaOpzioni">Opzioni</h1>
-    <form [formGroup]="optionsForm" (submit)="handleSubmit()" id="opzioniForm">
+    <form [formGroup]="optionsForm" (submit)="displayConfirm.toggle()" id="opzioniForm">
         <div id="colori">
             <div class="input" id="color1">
                 <label for="first">colore primario</label>
@@ -107,7 +107,13 @@
         </div>
         
     </form>
-
+    <div id="optionsConfirmDiv" [style]="displayConfirm.value">
+        <div id="optionsConfirm" >
+            <h3 id="optionsConfirmTitle">Vuoi confermare le opzioni selezionate</h3>
+            <button id="optionsConfirmAnnulla" (click)="displayConfirm.toggle()">annulla</button>
+            <button id="optionsConfirmConferma" (click)="handleSubmit()">conferma</button>
+        </div>
+    </div>
 
     <form [formGroup]="imgForm">
         <div id="allergeni">

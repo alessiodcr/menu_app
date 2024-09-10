@@ -3,17 +3,17 @@
         <form [formGroup]="registerForm" (submit)="handleSubmit()" id="signInForm">
             <h1 id="registrati">registrati</h1>
             <div id="signInNome">
-                <input type="text" name="" id="" placeholder="nome" formControlName="nome">
+                <input type="text" name="" id="" placeholder="nome" formControlName="nome" required>
             </div>
             <div id="signInEmail">
-                <input type="email" placeholder="email" formControlName="email">
+                <input type="email" placeholder="email" formControlName="email" required>
             </div>
             
             <div id="signInPassword">
-                <input type="password" placeholder="password" formControlName="password">
+                <input type="password" placeholder="password" formControlName="password" required>
             </div>
             <div id="passwordConfirm">
-                <input type="password" placeholder="conferma password" formControlName="confirm">
+                <input type="password" placeholder="conferma password" formControlName="confirm" required>
             </div>
             @if (!registerForm.controls['email'].valid && registerForm.controls['email'].touched) {
                 <h3 id="emailNonValida">email non valida</h3>
@@ -21,6 +21,7 @@
             @if (!registerForm.controls['confirm'].valid && registerForm.controls['confirm'].touched) {
                 <h3 id="passwordNonValida">password o conferma password non valide oppure diverse</h3>
             }
+            <h3>{{errorMsg}}</h3>
             <button type="submit" class="btn" id="signInSubmit">registrati</button>
         </form>
 </div>

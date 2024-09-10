@@ -1,24 +1,38 @@
 <div id="configProducts">
   @if (coperto) {
-    <h1 id="configCoperto" [style]="copertoDisplay.value">{{coperto}}</h1>
-    <button [style]="copertoDisplay.value" (click)="copertoDisplay.toggle()">modifica</button>
-    <button [style]="copertoDisplay.value" (click)="deleteCoperto()">elimina</button>
+    <div id="configCopertoDiv">
+      <h1 id="configCoperto" [style]="copertoDisplay.value" class="text1">coperto: {{coperto}}</h1>
+      <button [style]="copertoDisplay.value" (click)="copertoDisplay.toggle()" id="modificaCoperto">
+        <img src="assets/edit.png" alt="">
+      </button>
+      <button [style]="copertoDisplay.value" (click)="deleteCoperto()" id="eliminaCoperto">
+        <img src="assets/delete.png" alt="">
+      </button>
+    </div>
   }@else {
-    <button (click)="copertoDisplay.toggle()" [style]="copertoDisplay.value">+</button>
+    <button (click)="copertoDisplay.toggle()" [style]="copertoDisplay.value" id="aggiungiCoperto">+</button>
   }
   <form id="copertoForm" [formGroup]="copertoForm" [style]="copertoDisplay.formValue" (submit)="postCoperto()">
     <input type="text" placeholder="coperto" formControlName="coperto">
     <button type="submit">crea</button>
   </form>
   @if (header) {
-    <h1 id="configHeader" [style]="displayHeader.value">{{header}}</h1>
-    <button (click)="deleteHeader()" [style]="displayHeader.value">elimina</button>
-    <button (click)="displayHeader.toggle()" [style]="displayHeader.value">modifica</button>
+    <div id="configHeaderDiv">
+      <h1 id="configHeader" [style]="displayHeader.value" class="text1">{{header}}</h1>
+      <button (click)="displayHeader.toggle()" [style]="displayHeader.value" id="modificaHeader">
+        <img src="assets/edit.png" alt="">
+      </button>
+    <button (click)="deleteHeader()" [style]="displayHeader.value" id="eliminaHeader">
+      <img src="assets/delete.png" alt="">
+    </button>
+    
+    </div>
+    
   }@else{
-    <button id="configHeaderButton" [style]="displayHeader.value" (click)="displayHeader.toggle()">+</button>
+    <button id="aggiungiHeader" [style]="displayHeader.value" (click)="displayHeader.toggle()">+</button>
   }
   <form id="configHeaderForm" [style]="displayHeader.formValue" [formGroup]="headerForm" (submit)="handleHeaderSubmit()">
-      <input type="text" formControlName="testo">
+      <input type="text" formControlName="testo" placeholder="titolo">
       <button id="configHeaderSubmit" type="submit">crea</button>
     </form>
   
@@ -50,7 +64,7 @@
       <button class="editButton">
         <img src="assets/edit.png" alt="modifica" (click)="editsetTrue(product)" class="editImg" />
       </button>
-      <button class="deleteButton" (click)="deleteProduct(product)">
+      <button class="deleteButton" (click)="displayDeleteProduct.setTrue(product)">
         <img src="assets/delete.png" alt="cancella" class="deleteImg" />
       </button>
     </div>
@@ -68,6 +82,7 @@
       <div id="newProduct" [style]="display.formValue">
         <div id="newProductImgDiv">
           <input type="file" value="seleziona un immagine" (change)="onImagePicked($event)" id="newImg" />
+          <label for="newImg" id="newImgLabel">clicca per caricare un immagine</label>
         </div>
         <div id="newDes">
           <div id="newNome">
@@ -105,6 +120,13 @@
   <button id="addProduct" (click)="display.toggle()" [style]="display.value">
     +
   </button>
+  <div id="confirmDeleteProductDiv" [style]="displayDeleteProduct.value">
+    <div id="confirmDeleteProduct">
+        <h3 id="confirmDeleteProductTitle">Vuoi cancellare il prodotto?</h3>
+        <button id="confirmDeleteProductAnnulla" (click)="displayDeleteProduct.setFalse()">annulla</button>
+        <button id="confirmDeleteProductConferma" (click)="deleteProduct(displayDeleteProduct.product)">conferma</button>
+    </div>
+  </div>
 </div>
 
 <div id="editProductDiv" [style]="displayEdit.value">

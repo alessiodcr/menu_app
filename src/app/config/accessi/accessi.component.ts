@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { account } from '../../../types';
+import { account, accounts } from '../../../types';
 import { PendingService } from '../../services/pending.service';
 import { UsersService } from '../../services/users.service';
 import { SuspensionService } from '../../services/suspension.service';
@@ -22,7 +22,11 @@ export class AccessiComponent {
   ){}
   pendings: account[] = []
   users: account[] = []
+  isOn = true
   ngOnInit(){
+    this.switchService.getStatus().subscribe(res=>{
+      this.isOn = res
+    })
      this.pendingService.getPending().subscribe(res =>{
       this.pendings = res.users
     })
@@ -31,24 +35,28 @@ export class AccessiComponent {
     })
   }
 
+
   approve(account:account){
     this.pendingService.approve(account).subscribe(res=>{
       console.log('fatto' + res)
-      this.ngOnInit
+      this.ngOnInit()
+      this.displayAcceptPending.setFalse()
     })
   }
   reject(account: account){
     this.pendingService.reject(account).subscribe(res =>{
       console.log('cancellato' + res)
-      this.ngOnInit
+      this.ngOnInit()
+      this.displayRejectPending.setFalse()
     })
   }
 
   removeAccount(account: account){
-    this.usersService.removeAccount(account).subscribe(res =>{
-      console.log('cancellato' + res)
-      this.ngOnInit
-    })
+      this.usersService.removeAccount(account).subscribe(res =>{
+        console.log('cancellato' + res)
+        this.ngOnInit()
+        this.displayRemoveAccount.setFalse()
+      })    
   }
 
 
@@ -70,6 +78,76 @@ export class AccessiComponent {
 
   switch(){
     this.switchService.switch()
+    this.displaySwitchConfirm.toggle()
+    this.ngOnInit()
+  }
+
+
+  displayAcceptPending: {
+    value: string,
+    account: any,
+    setTrue: (account: account) =>void,
+    setFalse: () =>void
+  } = {
+    value: 'display: none;',
+    account: null,
+    setTrue(account: account){
+      this.value = 'display:flex;';
+      this.account = account
+    },
+    setFalse(){
+      this.value = 'display: none;';
+      this.account = null
+    }
+  }
+
+  displayRejectPending: {
+    value: string,
+    account: any,
+    setTrue: (account: account) =>void,
+    setFalse: () =>void
+  } = {
+    value: 'display: none;',
+    account: null,
+    setTrue(account: account){
+      this.value = 'display:flex;';
+      this.account = account
+    },
+    setFalse(){
+      this.value = 'display: none;';
+      this.account = null
+    }
+  }
+
+
+  displayRemoveAccount: {
+    value: string,
+    account: any,
+    setTrue: (account: account) =>void,
+    setFalse: () =>void
+  } = {
+    value: 'display: none;',
+    account: null,
+    setTrue(account: account){
+      this.value = 'display:flex;';
+      this.account = account
+    },
+    setFalse(){
+      this.value = 'display: none;';
+      this.account = null
+    }
+  }
+
+
+  displaySwitchConfirm = {
+    value : 'display: none;',
+    toggle(){
+      if(this.value == 'display: none;'){
+        this.value = 'display: flex;'
+      }else{
+        this.value = 'display: none;'
+      }
+    }
   }
 
 

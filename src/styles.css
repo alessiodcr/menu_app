@@ -329,7 +329,10 @@ table{
 /*end allergeni*/
 
 /*grid*/
-
+.portataHeader{
+    width: 100%;
+    text-align: center;
+}
 
 .girdWrapper{
     width: 100%;
@@ -583,6 +586,114 @@ table{
     right: 0;
     gap: 0.3em;
 }
+#confirmDeleteProductDiv{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    margin-left: 5%;
+    justify-content: center;
+    align-items: center;
+}
+#confirmDeleteProduct{
+    background-color: white;
+    height: 10em;
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 3px 0px;
+    border: 1px solid rgba(0, 0, 0, .125);
+    display: flex;
+    padding: 0.5em;
+    flex-wrap: wrap;
+    width: 25%;
+    justify-content: center;
+}
+#confirmDeleteProductTitle{
+    width: 100%;
+    text-align: center;
+}
+#confirmDeleteProductAnnulla{
+    background-color: rgb(33, 37, 41);
+    color: white;
+    border-radius: 10px;
+    margin-right: 20%;
+}
+#confirmDeleteProductConferma{
+    color: white;
+    background-color: rgb(13, 110, 253);
+    border: none;
+    border-radius: 10px;
+}
+#configCopertoDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#configCoperto{
+    text-align: center;
+    
+}
+#modificaCoperto{
+    color: white;
+    background-color: rgb(13, 110, 253);
+    border: none;
+    border-radius: 10px;
+}
+#eliminaCoperto{
+    background-color: rgb(33, 37, 41);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    margin-right: 1em;
+}
+#eliminaCoperto img, #modificaCoperto img{
+    height: 3em;
+    width: 3em;
+}
+#copertoForm{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#copertoForm button{
+    color: white;
+    background-color: rgb(13, 110, 253);
+    border: none;
+    border-radius: 10px;
+}
+#configHeaderDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#eliminaHeader{
+    background-color: rgb(33, 37, 41);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    margin-right: 1em;
+}
+#modificaHeader{
+    color: white;
+    background-color: rgb(13, 110, 253);
+    border: none;
+    border-radius: 10px;
+}
+#eliminaHeader img, #modificaHeader img{
+    height: 3em;
+    width: 3em;
+}
+#configHeaderForm{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#configHeaderForm button{
+    color: white;
+    background-color: rgb(13, 110, 253);
+    border: none;
+    border-radius: 10px;
+}
 /*end config products*/
 
 
@@ -604,6 +715,12 @@ table{
 }
 #newProduct{
     display: inline-flex;
+}
+#newImg{
+    display: none;
+}
+#newImgLabel{
+    width: 6em;
 }
 #empty{
     display: flex;
@@ -654,6 +771,7 @@ table{
     display: flex;
     justify-content: center;
     margin-left: 5%;
+    padding: 5%;
 }
 #portate{
     display: flex;
@@ -666,7 +784,7 @@ table{
     gap: 0.5em;
 }
 .portata{
-    display: inline-flex;
+    display: flex;
     width: 100%;
     justify-content: center;
 }
@@ -678,9 +796,10 @@ table{
     border: none;
     background-color: var(--primario);
     border-radius: 0.8em;
-    height: var(--grandi);
+    height: 3em;
     aspect-ratio: 1/1;
     cursor: pointer;
+    justify-self: flex-end;
 }
 #newPageButtonDiv{
     width: 100%;
@@ -702,6 +821,28 @@ table{
     padding: 0;
     width: 2em;
     aspect-ratio: 1/1;
+}
+#deletePageImg{
+    height: 2em;
+    width: 2em;
+}
+#newPageAnnulla{
+    color: white;
+    background-color:rgb(33, 37, 41) ;
+    border: none;
+    border-radius: 5px;
+    padding: 0.4em;
+    margin: 0.3em;
+    font-size: 15px;
+}
+#newPageSubmit{
+    color: white;
+    background-color: rgb(13, 110, 253);
+    border: none;
+    border-radius: 5px;
+    padding: 0.4em;
+    margin: 0.3em;
+    font-size: 15px;
 }
 
 /*end modifica portate*/
@@ -1019,9 +1160,49 @@ table{
     font-size: 20px;
     text-transform: uppercase ;
 }
+#optionsConfirmDiv{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    margin-left: 5%;
+    justify-content: center;
+    align-items: center;
+    z-index: 4;
+}
+#optionsConfirm{
+    background-color: white;
+    height: 10em;
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 3px 0px;
+    border: 1px solid rgba(0, 0, 0, .125);
+    display: flex;
+    padding: 0.5em;
+    flex-wrap: wrap;
+    width: 25%;
+    justify-content: center;
+}
+#optionsConfirmTitle{
+    width: 100%;
+    text-align: center;
+}
+#optionsConfirmAnnulla{
+    background-color: rgb(33, 37, 41);
+    color: white;
+    border-radius: 10px;
+    margin-right: 20%;
+}
+#optionsConfirmConferma{
+    color: white;
+    background-color: rgb(13, 110, 253);
+    border: none;
+    border-radius: 10px;
+}
 /*end options*/
 
 /*accessi*/
+
 #accessiComponent{
     margin-left: 5%;
     padding: 5%;
@@ -1033,7 +1214,8 @@ table{
 #pendingTable{
     width: 90%;
     max-width: 90%;
-    border: rgb(33, 37, 41) solid 1px
+    border: rgb(33, 37, 41) solid 1px;
+    margin-bottom: 5%;
 }
 .pendingData{
     padding: 0.5em;
@@ -1060,4 +1242,185 @@ table{
     color: white;
     gap: 0;
 }
+#serverSwitch{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+#serverSwitch button{
+    color: white;
+    background-color: rgb(253, 50, 13);
+    text-transform: uppercase;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#serverSwitchConfirmDiv{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    margin-left: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#serverSwitchConfirm{
+    background-color: white;
+    height: 10em;
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 3px 0px;
+    border: 1px solid rgba(0, 0, 0, .125);
+    display: flex;
+    padding: 0.5em;
+    flex-wrap: wrap;
+    width: 25%;
+    justify-content: center;
+}
+#serverSwitchConfirmTitle{
+    width: 100%;
+    text-align: center;
+}
+#serverSwitchConfirmDeny{
+    background-color: rgb(33, 37, 41);
+    color: white;
+    border-radius: 10px;
+    margin-right: 20%;
+}
+#serverSwitchConfirmConfirm{
+    color: white;
+    background-color: rgb(13, 110, 253);
+    border: none;
+    border-radius: 10px;
+}
+
+#confermaRifiutoPendingDiv{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    margin-left: 5%;
+    justify-content: center;
+    align-items: center;
+}
+#confermaRifiutoPending{
+    background-color: white;
+    height: 10em;
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 3px 0px;
+    border: 1px solid rgba(0, 0, 0, .125);
+    display: flex;
+    padding: 0.5em;
+    flex-wrap: wrap;
+    width: 25%;
+    justify-content: center;
+}
+#confermaRifiutoPendingTitle{
+    width: 100%;
+    text-align: center;
+}
+#confermaRifiutoPendingAnnulla{
+    background-color: rgb(33, 37, 41);
+    color: white;
+    border-radius: 10px;
+    margin-right: 20%;
+}
+#confermaRifiutoPendingConferma{
+    color: white;
+    background-color: rgb(13, 110, 253);
+    border: none;
+    border-radius: 10px;
+}
+
+#confermaAccettaPendingDiv{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    margin-left: 5%;
+    justify-content: center;
+    align-items: center;
+}
+#confermaAccettaPending{
+    background-color: white;
+    height: 10em;
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 3px 0px;
+    border: 1px solid rgba(0, 0, 0, .125);
+    display: flex;
+    padding: 0.5em;
+    flex-wrap: wrap;
+    width: 25%;
+    justify-content: center;
+}
+#confermaAccettaPendingTitle{
+    width: 100%;
+    text-align: center;
+}
+#confermaAccettaPendingAnnulla{
+    background-color: rgb(33, 37, 41);
+    color: white;
+    border-radius: 10px;
+    margin-right: 20%;
+}
+#confermaAccettaPendingConferma{
+    color: white;
+    background-color: rgb(13, 110, 253);
+    border: none;
+    border-radius: 10px;
+}
+
+#confermaRimuoviAccountDiv{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    margin-left: 5%;
+    justify-content: center;
+    align-items: center;
+}
+#confermaRimuoviAccount{
+    background-color: white;
+    height: 10em;
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 3px 0px;
+    border: 1px solid rgba(0, 0, 0, .125);
+    display: flex;
+    padding: 0.5em;
+    flex-wrap: wrap;
+    width: 25%;
+    justify-content: center;
+}
+#confermaRimuoviAccountTitle{
+    width: 100%;
+    text-align: center;
+}
+#confermaRimuoviAccountAnnulla{
+    background-color: rgb(33, 37, 41);
+    color: white;
+    border-radius: 10px;
+    margin-right: 20%;
+}
+#confermaRimuoviAccountConferma{
+    color: white;
+    background-color: rgb(13, 110, 253);
+    border: none;
+    border-radius: 10px;
+}
+
+.accettaPending, .rifiutaPending, .sospendi, .rimuoviAccount{
+    color: white;
+    background-color: rgb(13, 110, 253);
+    border: none;
+    border-radius: 5px;
+    padding: 0.2em 0.5em;
+}
+
+
 /*end accessi*/

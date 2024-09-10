@@ -115,6 +115,19 @@ export class OptionsComponent {
     }
     this.optionsService.postOptions(options).subscribe(res =>{
       console.log('fatto' +res)
+      this.ngOnInit()
+      this.displayConfirm.toggle()
     })
+  }
+
+  displayConfirm = {
+    value: 'display: none;',
+    toggle(){
+      if(this.value === 'display: none;'){
+        this.value  ='display: flex;';
+      }else{
+        this.value = 'display: none;'
+      }
+    }
   }
 }

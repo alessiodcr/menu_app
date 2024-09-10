@@ -3,7 +3,7 @@
         @for (page of pages; track $index) {
             <li class="portata" id="{{page}}">
                 <span class="portataName">{{page}}</span> 
-                <button (click)="deleteRoute(page)" class="deletePage">
+                <button (click)="displayDeletePortata.setTrue(page)" class="deletePage">
                     <img src="assets/delete.png" alt="" id="deletePageImg">
                 </button>
             </li>
@@ -17,8 +17,15 @@
             <button (click)="display.toggle()" id="newPageAnnulla">ANNULLA</button>
             <form (submit)="handlePost()" [formGroup]="newPage" id="newPageForm">
                 <input type="text" formControlName="newPage">
-                <button type="submit" id="newPage">crea</button>
+                <button type="submit" id="newPageSubmit">crea</button>
             </form>
         </li>
     </ul>
+    <div id="confermaRimuoviAccountDiv" [style]="displayDeletePortata.value">
+        <div id="confermaRimuoviAccount">
+            <h3 id="confermaRimuoviAccountTitle">Vuoi cancellare la portata selezionata</h3>
+            <button id="confermaRimuoviAccountAnnulla" (click)="displayDeletePortata.setFalse()">annulla</button>
+            <button id="confermaRimuoviAccountConferma" (click)="deleteRoute(displayDeletePortata.portata)">conferma</button>
+        </div>
+    </div>
 </div>

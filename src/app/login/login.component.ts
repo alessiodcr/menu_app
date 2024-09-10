@@ -25,9 +25,13 @@ export class LoginComponent {
     this.loginForm.
   }*/
     handleSubmit(){
-      this.authService.login(this.loginForm.value.email ?? '', this.loginForm.value.password ?? '').subscribe(res=>{
-        localStorage.setItem('user', JSON.stringify(res))
+      this.authService.login(this.loginForm.value.email ?? '', this.loginForm.value.password ?? '').subscribe((res: any)=>{
+        if(!res.message){
+          localStorage.setItem('user', JSON.stringify(res))
         this.router.navigate(['config/options'])
+      }else{
+        this.errorMsg = res.message
+      }
       }, err =>{
         this.errorMsg = err.error
       }

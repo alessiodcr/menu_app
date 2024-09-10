@@ -148,6 +148,7 @@ export class ConfigGridComponent {
       console.log('cancellato')
       console.log(data)
       this.ngOnInit()
+      this.displayDeleteProduct.setFalse()
     }
     )
     
@@ -361,5 +362,21 @@ export class ConfigGridComponent {
   }
 
 
-
+  displayDeleteProduct: {
+    value: string,
+    product: any,
+    setTrue: (product: Product) =>void,
+    setFalse: () =>void
+  } = {
+    value: 'display: none;',
+    product: null,
+    setTrue(product){
+      this.value = 'display:flex;';
+      this.product = product
+    },
+    setFalse(){
+      this.value = 'display: none;';
+      this.product = null
+    }
+  }
 }

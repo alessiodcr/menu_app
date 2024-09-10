@@ -20,6 +20,7 @@ export class PortateComponent {
     if(page){
       this.pagesService.postPage(page).subscribe(res=>{
         console.log(res)
+        this.ngOnInit()
       })
     }
     this.display.toggle()
@@ -27,6 +28,7 @@ export class PortateComponent {
   deleteRoute(page:string){
     this.pagesService.deletePage(page).subscribe(res=>{
       console.log(res)
+      this.ngOnInit()
     })
   }
   pages: string[] = []
@@ -46,6 +48,25 @@ export class PortateComponent {
   ngOnInit(){
     this.pagesService.getPages().subscribe(res=>{
       this.pages = res.pages
+      this.displayDeletePortata.setFalse()
     })
+  }
+
+  displayDeletePortata: {
+    value: string,
+    portata: string,
+    setTrue: (portata: string) =>void,
+    setFalse: () =>void
+  } = {
+    value: 'display: none;',
+    portata: '',
+    setTrue(portata: string){
+      this.value = 'display:flex;';
+      this.portata = portata
+    },
+    setFalse(){
+      this.value = 'display: none;';
+      this.portata = ''
+    }
   }
 }

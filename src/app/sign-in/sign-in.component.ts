@@ -28,15 +28,18 @@ export class SignInComponent {
 
 
   handleSubmit() {
-    if (this.registerForm.valid) {
-      this.authService.register(this.registerForm.value.nome ?? '', this.registerForm.value.email ?? '', this.registerForm.value.password ?? '', this.registerForm.value.confirm ?? '').subscribe(res => {
+    if (this.registerForm.controls.confirm.valid, this.registerForm.controls.email.valid, this.registerForm.controls.password.valid, this.registerForm.controls.nome.valid) {
+      this.authService.register(this.registerForm.value.nome ?? '', this.registerForm.value.email ?? '', this.registerForm.value.password ?? '', this.registerForm.value.confirm ?? '').subscribe((res: any) => {
 
-        console.log(res)
-        this.router.navigate(['..', 'home'])
+        if(!res.message){console.log(res)
+        this.router.navigate(['..', 'home'])}else{
+      this.errorMsg = res.message
+      }
 
 
       }, err => {
-        this.errorMsg = err.error
+        this.errorMsg = err.text
+        console.log(err)
       }
 
       )

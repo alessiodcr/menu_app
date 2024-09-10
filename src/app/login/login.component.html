@@ -3,11 +3,11 @@
         <h1 id="loginTitle">Login</h1>
         <form [formGroup]="loginForm" (submit)="handleSubmit()" id="loginForm">
             <div id="loginEmail">
-                <input type="email" formControlName="email" id="inputEmail" placeholder="email" />
+                <input type="email" formControlName="email" id="inputEmail" placeholder="email" required/>
                 <img src="{{env.server + '/img/mail.png'}}" alt="" id="loginEmailImg">
             </div>
             <div id="loginPassword">
-                <input type="password" formControlName="password" id="inputPassword" placeholder="password" />
+                <input type="password" formControlName="password" id="inputPassword" placeholder="password" required />
                 <img src="{{env.server + '/img/password.png'}}" id="loginPasswordImg">
             </div>
             
